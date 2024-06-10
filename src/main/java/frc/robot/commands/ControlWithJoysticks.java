@@ -21,6 +21,7 @@ public class ControlWithJoysticks extends Command{
         Supplier<Double> rightXSupplier,
         Supplier<Double> rightYSupplier
     ){
+        addRequirements(motors);
         this.motors = motors;
         this.leftXSupplier = leftXSupplier;
         this.leftYSupplier = leftYSupplier;
