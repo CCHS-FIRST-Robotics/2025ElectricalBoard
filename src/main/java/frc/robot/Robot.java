@@ -5,9 +5,6 @@
 package frc.robot;
 
 import org.littletonrobotics.junction.*;
-import org.littletonrobotics.junction.wpilog.WPILOGWriter;
-import org.littletonrobotics.junction.networktables.NT4Publisher;
-
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Robot extends LoggedRobot {
@@ -18,8 +15,6 @@ public class Robot extends LoggedRobot {
         robotContainer = new RobotContainer();
 
         Logger.recordMetadata("ProjectName", "ElectricalBoard2024"); // Set a metadata value
-        Logger.addDataReceiver(new WPILOGWriter()); // USB stick
-        Logger.addDataReceiver(new NT4Publisher());
         Logger.start();
     }
 
