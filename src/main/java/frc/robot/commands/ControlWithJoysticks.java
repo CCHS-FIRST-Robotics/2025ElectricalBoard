@@ -25,16 +25,16 @@ public class ControlWithJoysticks extends Command{
         this.motors = motors;
         this.leftXSupplier = leftXSupplier;
         this.leftYSupplier = leftYSupplier;
-        this.rightXSupplier = leftXSupplier;
-        this.rightYSupplier = leftYSupplier;
+        this.rightXSupplier = rightXSupplier;
+        this.rightYSupplier = rightYSupplier;
     }
     
     @Override
     public void execute() {
         double leftX = leftXSupplier.get();
         double leftY = leftYSupplier.get();
-        double rightX = leftXSupplier.get();
-        double rightY = leftYSupplier.get();
+        double rightX = rightXSupplier.get();
+        double rightY = rightYSupplier.get();
 
         motors.startTalonFX(applyPreferences(leftX));
         motors.startSparkMax(applyPreferences(leftY));

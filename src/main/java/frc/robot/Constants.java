@@ -5,7 +5,7 @@
 package frc.robot;
 
 public final class Constants {
-    public static double ANALOG_DEADZONE = 0.02;
+    public static double ANALOG_DEADZONE = 0.3;
 
     public static int CONTROLLER_PORT = 0;
     public static int SWITCH_PORT_1 = 0;
@@ -14,6 +14,6 @@ public final class Constants {
 
     public static int TALONFX_ID = 0;
     public static int SPARKMAX_ID = 1;
-    public static int TALONSRX_ID_1 = 2;
+    public static int TALONSRX_ID_1 = 5;
     public static int TALONSRX_ID_2 = 3;
 }
