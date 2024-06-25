@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 
 public class MotorIOTalonSRX implements MotorIO {
-    TalonSRX motor;
+    private TalonSRX motor;
     
     public MotorIOTalonSRX(int id){
         motor = new TalonSRX(id);

@@ -3,9 +3,10 @@ package frc.robot.subsystems.motors;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Motors extends SubsystemBase{
-    MotorIOTalonFX talonFX;
-    MotorIOSparkMax sparkMax;
-    MotorIOTalonSRX talonSRX1, talonSRX2;
+    // ! kinda bad to have specific IO classes
+    private MotorIOTalonFX talonFX;
+    private MotorIOSparkMax sparkMax;
+    private MotorIOTalonSRX talonSRX1, talonSRX2;
 
     public Motors(int talonFXId, int sparkMaxId, int talonSRXId1, int talonSRXId2){
         talonFX = new MotorIOTalonFX(talonFXId); // kraken

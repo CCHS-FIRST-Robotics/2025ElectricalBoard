@@ -10,10 +10,14 @@ public final class Constants {
     public static int CONTROLLER_PORT = 0;
     public static int SWITCH_PORT_1 = 0;
     public static int SWITCH_PORT_2 = 1;
-    public static int SENSOR_PORT = 2;
+    public static int IR_SENSOR_PORT = 2;
 
     public static int TALONFX_ID = 0;
     public static int SPARKMAX_ID = 1;
     public static int TALONSRX_ID_1 = 5;
     public static int TALONSRX_ID_2 = 3;
+
+    // ! probably not called ids
+    public static int PISTON_ID_1 = 0;
+    public static int PISTON_ID_2 = 1;
 }

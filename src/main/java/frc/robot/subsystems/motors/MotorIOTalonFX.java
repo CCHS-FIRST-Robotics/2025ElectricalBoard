@@ -5,13 +5,13 @@ import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.BaseStatusSignal;
 
 public class MotorIOTalonFX implements MotorIO {
-    TalonFX motor;
+    private TalonFX motor;
 
-    StatusSignal<Double> voltageSignal;
-    StatusSignal<Double> currentSignal;
-    StatusSignal<Double> positionSignal;
-    StatusSignal<Double> velocitySignal;
-    StatusSignal<Double> temperatureSignal;
+    private StatusSignal<Double> voltageSignal;
+    private StatusSignal<Double> currentSignal;
+    private StatusSignal<Double> positionSignal;
+    private StatusSignal<Double> velocitySignal;
+    private StatusSignal<Double> temperatureSignal;
     
     public MotorIOTalonFX(int id){
         motor = new TalonFX(id);

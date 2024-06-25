@@ -11,6 +11,9 @@ public interface SolenoidIO {
     public default void set(boolean on) {
     }
 
+    public default void toggle() {
+    }
+
     public default void updateInputs(SolenoidIOInputs inputs) {
     }
 }
