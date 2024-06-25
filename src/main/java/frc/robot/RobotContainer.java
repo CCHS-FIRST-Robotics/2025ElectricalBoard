@@ -28,7 +28,7 @@ public class RobotContainer {
     private void configureBindings() {
         //-----Motors-----//
 
-        // joysticks
+        // joystick controls
         motors.setDefaultCommand(
             new ControlWithJoysticks(
                 motors,
