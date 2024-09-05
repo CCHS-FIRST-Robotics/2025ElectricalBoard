@@ -39,7 +39,9 @@ public class Robot extends LoggedRobot {
     public void teleopInit() {}
 
     @Override
-    public void teleopPeriodic() {}
+    public void teleopPeriodic() {
+        
+    }
 
     @Override
     public void testInit() {
