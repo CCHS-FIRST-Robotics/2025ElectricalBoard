@@ -37,9 +37,9 @@ public class ControlWithJoysticks extends Command{
         double rightY = rightYSupplier.get();
 
         motors.startMotor(0, applyPreferences(leftX));
-        motors.startMotor(0, applyPreferences(leftY));
-        motors.startMotor(0, applyPreferences(rightX));
-        motors.startMotor(0, applyPreferences(rightY));
+        motors.startMotor(1, applyPreferences(leftY));
+        motors.startMotor(2, applyPreferences(rightX));
+        motors.startMotor(3, applyPreferences(rightY));
     }
 
     public double applyPreferences(double input){
