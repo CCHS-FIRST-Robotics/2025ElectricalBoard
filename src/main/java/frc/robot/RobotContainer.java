@@ -18,7 +18,12 @@ public class RobotContainer {
     Trigger nintendo2 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_2)::get);
     Trigger irSensor = new Trigger(new DigitalInput(Constants.IR_SENSOR_PORT)::get);
 
-    Motors motors = new Motors(Constants.TALONFX_ID, Constants.SPARKMAX_ID, Constants.TALONSRX_ID_1, Constants.TALONSRX_ID_2);
+    FourMotors motors = new FourMotors(
+        new Motor( new MotorIOTalonSRX(Constants.TALONFX_ID)), // kraken
+        new Motor(new MotorIOTalonSRX(Constants.SPARKMAX_ID)), // neo
+        new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_1)), // cim1
+        new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_2)) // cim2
+    );
     Pneumatics pneumatics = new Pneumatics(Constants.PISTON_ID_1, Constants.PISTON_ID_2);
 
     public RobotContainer() {
@@ -40,15 +45,15 @@ public class RobotContainer {
         );
 
         // button controls
-        // controller.x().onTrue(new InstantCommand(() -> motors.startTalonFX(8)));
-        // controller.y().onTrue(new InstantCommand(() -> motors.startSparkMax(8)));
-        // controller.b().onTrue(new InstantCommand(() -> motors.startTalonSRX1(8))
-        //             .andThen(new InstantCommand(() -> motors.startTalonSRX2(8))));
-        // controller.a().onTrue(new InstantCommand(() -> motors.stopAll()));
+        controller.x().onTrue(new InstantCommand(() -> motors.startMotor(0, 8)));
+        controller.y().onTrue(new InstantCommand(() -> motors.startMotor(1, 8)));
+        controller.b().onTrue(new InstantCommand(() -> motors.startMotor(2, 8))
+                    .andThen(new InstantCommand(() -> motors.startMotor(3, 8))));
+        controller.a().onTrue(new InstantCommand(() -> motors.stopAll()));
 
         //-----Pneumatics-----//
-        controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));
-        controller.a().onTrue(new InstantCommand(() -> pneumatics.togglePiston2()));
+        // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));
+        // controller.a().onTrue(new InstantCommand(() -> pneumatics.togglePiston2()));
 
         //-----DIO-----//
         nintendo1.onTrue(new InstantCommand(() -> System.out.println("switch 1")));

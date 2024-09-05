@@ -4,10 +4,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import java.util.function.Supplier;
 
 import frc.robot.Constants;
-import frc.robot.subsystems.motors.Motors;
+import frc.robot.subsystems.motors.FourMotors;
 
 public class ControlWithJoysticks extends Command{
-    Motors motors;
+    FourMotors motors;
     Supplier<Double> leftXSupplier;
     Supplier<Double> leftYSupplier;
     Supplier<Double> rightXSupplier;
@@ -15,7 +15,7 @@ public class ControlWithJoysticks extends Command{
 
     
     public ControlWithJoysticks(
-        Motors motors,
+        FourMotors motors,
         Supplier<Double> leftXSupplier,
         Supplier<Double> leftYSupplier,
         Supplier<Double> rightXSupplier,
@@ -36,10 +36,10 @@ public class ControlWithJoysticks extends Command{
         double rightX = rightXSupplier.get();
         double rightY = rightYSupplier.get();
 
-        motors.startTalonFX(applyPreferences(leftX));
-        motors.startSparkMax(applyPreferences(leftY));
-        motors.startTalonSRX1(applyPreferences(rightX));
-        motors.startTalonSRX2(applyPreferences(rightY));
+        motors.startMotor(0, applyPreferences(leftX));
+        motors.startMotor(0, applyPreferences(leftY));
+        motors.startMotor(0, applyPreferences(rightX));
+        motors.startMotor(0, applyPreferences(rightY));
     }
 
     public double applyPreferences(double input){
