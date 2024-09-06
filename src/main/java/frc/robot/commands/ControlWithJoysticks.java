@@ -35,7 +35,7 @@ public class ControlWithJoysticks extends Command{
         double leftY = leftYSupplier.get();
         double rightX = rightXSupplier.get();
         double rightY = rightYSupplier.get();
-
+        
         motors.startMotor(0, applyPreferences(leftX));
         motors.startMotor(1, applyPreferences(leftY));
         motors.startMotor(2, applyPreferences(rightX));
@@ -46,6 +46,6 @@ public class ControlWithJoysticks extends Command{
         if(Math.abs(input) < Constants.ANALOG_DEADZONE){
             return 0; 
         }
-        return input * 12;
+        return input * 8;
     }
 }
