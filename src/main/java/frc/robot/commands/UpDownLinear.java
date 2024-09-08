@@ -8,7 +8,7 @@ public class UpDownLinear extends Command{
     FourMotors motors;
     int time = 0;
     int seconds = 10;
-    int percent = 100;
+    double percent = 1d;
     boolean increasing = true;
 
     public UpDownLinear(FourMotors motors){
@@ -18,7 +18,7 @@ public class UpDownLinear extends Command{
 
     @Override
     public void execute() {
-        motors.startMotor(0, time * (percent / 100d) * 12d/(50d * seconds));
+        motors.startMotor(0, time * percent * 12d/(50d * seconds));
         
         if(increasing) time++;
         else time--;
