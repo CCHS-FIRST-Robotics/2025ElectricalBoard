@@ -19,10 +19,12 @@ public class UpDownLinear extends Command{
     @Override
     public void execute() {
         motors.startMotor(0, time * (percent / 100d) * 12d/(50d * seconds));
+        
         if(increasing) time++;
         else time--;
-        if(increasing && time == 500) increasing = !increasing;
-        else if(!increasing && time == 0) increasing = !increasing;
+
+        if(time == 50 * seconds) increasing = !increasing;
+        else if(time == 0) increasing = !increasing;
     }
 
 }
