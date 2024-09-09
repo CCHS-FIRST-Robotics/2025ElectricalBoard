@@ -8,11 +8,11 @@ public class Motor {
         this.io = io;
     }
 
-    public void periodic(){
-        io.updateInputs(inputs);
-    }
-
     public void setVoltage(double volts){
         io.setVoltage(volts);
+    }
+
+    public void updateInputs(){
+        io.updateInputs(inputs);
     }
 }

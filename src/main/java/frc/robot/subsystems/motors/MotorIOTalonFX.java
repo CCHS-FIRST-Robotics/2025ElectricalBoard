@@ -1,8 +1,7 @@
 package frc.robot.subsystems.motors;
 
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.StatusSignal;
-import com.ctre.phoenix6.BaseStatusSignal;
+import com.ctre.phoenix6.*;
 
 public class MotorIOTalonFX implements MotorIO {
     private TalonFX motor;

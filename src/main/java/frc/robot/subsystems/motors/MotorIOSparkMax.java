@@ -1,7 +1,6 @@
 package frc.robot.subsystems.motors;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
+import com.revrobotics.*;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class MotorIOSparkMax implements MotorIO {

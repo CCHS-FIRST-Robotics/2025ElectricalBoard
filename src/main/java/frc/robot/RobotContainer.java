@@ -47,11 +47,8 @@ public class RobotContainer {
         );
 
         // button controls
-        controller.x().onTrue(new InstantCommand(() -> motors.startMotor(0, 8)));
-        controller.y().onTrue(new InstantCommand(() -> motors.startMotor(1, 8)));
-        controller.b().onTrue(new InstantCommand(() -> motors.startMotor(2, 8))
-                    .andThen(new InstantCommand(() -> motors.startMotor(3, 8))));
-        controller.a().onTrue(new InstantCommand(() -> motors.stopAll()));
+        controller.x().onTrue(new LinearAcceleration(motors, 0, 10));
+        controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 
         //-----Pneumatics-----//
         // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));

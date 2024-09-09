@@ -17,7 +17,6 @@ public final class Constants {
     public static int TALONSRX_ID_1 = 2;
     public static int TALONSRX_ID_2 = 3;
 
-    // ! probably not called ids
     public static int PISTON_ID_1 = 0;
     public static int PISTON_ID_2 = 1;
 }
