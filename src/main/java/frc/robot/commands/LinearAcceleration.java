@@ -19,14 +19,7 @@ public class LinearAcceleration extends Command{
     
     @Override
     public void execute() {
-        // if((t / 10) % 2 == 0){
-        //     motors.setAllMotorVoltage(((t % 11) / 10 ) * maxVoltage);
-        // }else{
-        //     motors.setAllMotorVoltage(((10 - t % 11) / 10) * maxVoltage);
-        // }
-
-        motors.setAllMotorVoltage((((t / 10) % 2 == 0 ? t % 11 : 10 - t % 11) / 10) * maxVoltage);
-        
+        motors.setAllMotorVoltage(((double) (((int) t / 10) % 2 == 0 ? t % 10 : 10 - t % 10) / 10d) * maxVoltage);
         t += 0.02; 
     }
 
