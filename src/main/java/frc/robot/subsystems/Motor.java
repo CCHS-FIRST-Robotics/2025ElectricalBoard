@@ -11,6 +11,8 @@ public class Motor {
         motor = new TalonSRX(motorID);
     }
     public void setVoltage(double volts){
-        motor.set(TalonSRXControlMode.PercentOutput,volts);
+        motor.set(TalonSRXControlMode.PercentOutput,volts / 12);
     }
 }
+
+
