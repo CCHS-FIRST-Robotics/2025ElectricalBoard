@@ -46,5 +46,11 @@ public class ControlWithJoysticks extends Command{
             return 0; 
         }
         return input * 8;
+
+
+        if (Math.abs(input) < deadzone) {
+            return 0;
+    }
+    return Math.pow(input, 2) * Math.signum(input);
     }
 }
