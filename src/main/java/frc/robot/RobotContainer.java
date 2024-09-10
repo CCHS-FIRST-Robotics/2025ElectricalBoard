@@ -47,7 +47,7 @@ public class RobotContainer {
         );
 
         // button controls
-        controller.x().onTrue(new LinearAcceleration(motors, 0, 10));
+        controller.x().onTrue(new LinearAcceleration(motors, 0, 12, 10));
         controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 
         //-----Pneumatics-----//

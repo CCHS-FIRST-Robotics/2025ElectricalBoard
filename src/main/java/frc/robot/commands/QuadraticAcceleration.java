@@ -2,16 +2,20 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.motors.FourMotors;
+import frc.robot.Constants;
 
 public class QuadraticAcceleration extends Command{
     FourMotors motors;
-
-    double t = 0; 
     int duration;
     int maxVoltage;
+    int quarterWavelength;
+    
+    double t = 0; 
+    double change = 0; 
+    double totalVolts = 0;
 
     public QuadraticAcceleration(FourMotors motors, int duration, int maxVoltage){
-        // addRequirements(motors);
+        addRequirements(motors);
         this.motors = motors;
         this.duration = duration;
         this.maxVoltage = maxVoltage;
@@ -19,8 +23,23 @@ public class QuadraticAcceleration extends Command{
     
     @Override
     public void execute() {
-        double linear = ((double) (((int) t / 10) % 2 == 0 ? t % 10 : 10 - t % 10) / 10d) * maxVoltage;
-        motors.setAllMotorVoltage(linear/20);
+        double changeChange = maxVoltage / (quarterWavelength * (1 / Constants.PERIOD));
+        if (((int) t / quarterWavelength) % 2 == 0) { // increasing
+            change += changeChange;
+            totalVolts += change;
+        } else { // decreasing
+            change -= changeChange;
+            totalVolts -= change;
+        }
+
+        /**
+         * to normalize, you want the totalVolts at quarterWavelength
+         * which is the average change(maxVoltage/2) times the number of 20ms in 10 seconds(500)
+         * 6 * 500 = 3000
+         */
+        int maxTotalVolts = (maxVoltage/2) * (int)(quarterWavelength / Constants.PERIOD);
+        motors.setAllMotorVoltage((totalVolts / maxTotalVolts) * maxVoltage);
+
         t += 0.02; 
     }
 
