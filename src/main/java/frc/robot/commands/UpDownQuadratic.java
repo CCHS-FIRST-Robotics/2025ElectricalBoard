@@ -30,4 +30,3 @@ public class UpDownQuadratic extends Command{
     }
 
 }
-// 9471 is jude password
