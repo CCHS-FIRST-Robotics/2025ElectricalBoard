@@ -12,7 +12,7 @@ public class UpDownLinear extends Command{
 
     @Override
     public void execute(){
-
+        
     }
     
 }
