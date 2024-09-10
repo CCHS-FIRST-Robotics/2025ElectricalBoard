@@ -46,6 +46,7 @@ public class RobotContainer {
 
         // button controls
         controller.x().onTrue(new InstantCommand(() -> motors.startMotor(0, 8)));
+        controller.x().onTrue(new Quadratic(motors));
         controller.y().onTrue(new InstantCommand(() -> motors.startMotor(1, 8)));
         controller.b().onTrue(new InstantCommand(() -> motors.startMotor(2, 8))
                     .andThen(new InstantCommand(() -> motors.startMotor(3, 8))));
