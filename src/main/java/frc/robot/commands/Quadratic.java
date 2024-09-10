@@ -19,7 +19,7 @@ public class Quadratic extends Command {
         }
 
         if(250 <= time && time <= 750) {
-            motor.startMotor(0, -0.24 * Math.pow(time * 0.02 - 10, 2) + 50);
+            motor.startMotor(0, -0.24 * (Math.pow(time * 0.02 - 10, 2) - 50));
         }
 
         if(time > 750) {
