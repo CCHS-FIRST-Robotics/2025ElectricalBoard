@@ -9,7 +9,7 @@ public class Quadratic extends Command {
 
     public Quadratic(FourMotors motors) {
         addRequirements(motors);
-        this.motor = motor;
+        this.motor = motors;
     }
 
     @Override

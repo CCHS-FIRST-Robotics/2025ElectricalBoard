@@ -7,7 +7,7 @@ public class Linear extends Command {
     boolean increasing = true;
     double percent = 1d;
     double time = 0;
-    double seconds = 10.0;
+    double seconds = 5.0;
 
     public Linear(FourMotors motor) {
         addRequirements(motor);
