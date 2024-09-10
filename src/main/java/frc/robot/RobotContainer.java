@@ -22,7 +22,7 @@ public class RobotContainer {
         new Motor(new MotorIOTalonFX(Constants.TALONFX_ID)), // kraken
         new Motor(new MotorIOSparkMax(Constants.SPARKMAX_ID)), // neo
         new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_1)), // cim1
-        new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_2)) // cim2
+        new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_2)) // cim2 //! 
         
     );
     
