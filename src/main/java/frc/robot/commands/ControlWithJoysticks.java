@@ -45,12 +45,6 @@ public class ControlWithJoysticks extends Command{
         if(Math.abs(input) < Constants.ANALOG_DEADZONE){
             return 0; 
         }
-        return input * 8;
-
-
-        if (Math.abs(input) < deadzone) {
-            return 0;
-    }
-    return Math.pow(input, 2) * Math.signum(input);
+        return Math.pow(input, 2) * Math.signum(input) * 8;
     }
 }

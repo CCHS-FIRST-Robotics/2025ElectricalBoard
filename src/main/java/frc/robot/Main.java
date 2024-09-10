@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.RobotBase;
  * 
  * increase and decrease rotational velocity (linear + exponential)
  * set specific angle
- * exponential speed with joysticks
  * make logging work
  */
 
