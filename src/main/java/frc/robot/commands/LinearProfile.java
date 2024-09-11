@@ -8,7 +8,7 @@ public class LinearProfile extends Command{
     FourMotors motors;
     int duration;
     int maxVoltage;
-    int quarterWavelength;
+    int halfWavelength;
     
     double t = 0; 
     double totalVolts = 0;
@@ -18,13 +18,13 @@ public class LinearProfile extends Command{
         this.motors = motors;
         this.duration = duration;
         this.maxVoltage = maxVoltage;
-        this.quarterWavelength = quarterWavelength;
+        this.halfWavelength = quarterWavelength;
     }
     
     @Override
     public void execute() {
-        double change = maxVoltage / (quarterWavelength * (1 / Constants.PERIOD));
-        if (((int) t / quarterWavelength) % 2 == 0) { // increasing
+        double change = maxVoltage / (halfWavelength * (1 / Constants.PERIOD));
+        if (((int) t / halfWavelength) % 2 == 0) { // increasing
             totalVolts += change;
         } else { // decreasing
             totalVolts -= change;
@@ -32,8 +32,6 @@ public class LinearProfile extends Command{
 
         motors.setAllMotorVoltage(totalVolts);
         t += Constants.PERIOD; 
-
-        // double linear = ((double) (((int) t / 10) % 2 == 0 ? t % 10 : 10 - t % 10) / 10d) * maxVoltage;
     }
 
     @Override

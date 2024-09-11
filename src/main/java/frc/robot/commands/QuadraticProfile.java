@@ -8,7 +8,7 @@ public class QuadraticProfile extends Command{
     FourMotors motors;
     int duration;
     int maxVoltage;
-    int quarterWavelength;
+    int halfWavelength;
     
     double t = 0; 
     double change = 0;
@@ -19,13 +19,13 @@ public class QuadraticProfile extends Command{
         this.motors = motors;
         this.duration = duration;
         this.maxVoltage = maxVoltage;
-        this.quarterWavelength = quarterWavelength;
+        this.halfWavelength = quarterWavelength;
     }
     
     @Override
     public void execute() {
-        double changeChange = maxVoltage / (quarterWavelength * (1 / Constants.PERIOD));
-        if (((int) t / quarterWavelength) % 2 == 0) { // increasing
+        double changeChange = maxVoltage / (halfWavelength * (1 / Constants.PERIOD));
+        if (((int) t / halfWavelength) % 2 == 0) { // increasing
             change += changeChange;
             totalVolts += change;
         } else { // decreasing
@@ -38,7 +38,7 @@ public class QuadraticProfile extends Command{
          * which is the average change(maxVoltage/2) times the number of 20ms in 10 seconds(500)
          * 6 * 500 = 3000
          */
-        int maxTotalVolts = (maxVoltage/2) * (int)(quarterWavelength / Constants.PERIOD);
+        int maxTotalVolts = (maxVoltage/2) * (int)(halfWavelength / Constants.PERIOD);
         motors.setAllMotorVoltage((totalVolts / maxTotalVolts) * maxVoltage);
 
         t += 0.02; 
