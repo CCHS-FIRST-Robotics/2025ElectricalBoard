@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 public class UpDownLinear extends Command{
     int time = 0;
-    int seconds = 10;
+    int seconds = 10; //increase for 10 seconds
     boolean increasing = true;
 
     private TalonSRX motors;
@@ -18,8 +18,7 @@ public class UpDownLinear extends Command{
 
     @Override
     public void execute(){ //0.02 seconds period
-        motors.set(TalonSRXControlMode.PercentOutput, time*12d/(50d*seconds));//after one second, called 50 times, want voltage to be 1/12
-        //time * percent * 12d/(50d * seconds)
+        motors.set(TalonSRXControlMode.PercentOutput, time*12d/(50d*seconds));//after one second, called 50 times, want voltage to be 12/10
         if(time == 50){
             increasing = false;
         }
