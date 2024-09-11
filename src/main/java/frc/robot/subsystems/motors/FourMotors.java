@@ -2,6 +2,11 @@ package frc.robot.subsystems.motors;
 
 import edu.wpi.first.wpilibj2.command.*;
 
+import java.sql.Driver;
+
+import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DriverStation;
+
 public class FourMotors extends SubsystemBase{
     private Motor[] motors = new Motor[4];
 
@@ -32,6 +37,12 @@ public class FourMotors extends SubsystemBase{
     public void stopMotors() {
         for (Motor motor : motors) {
             motor.setVoltage(0);
+        }
+    }
+
+    public void logVoltage() {
+        for (Motor motor : motors) {
+            motor.getVoltage();
         }
     }
 }

@@ -28,6 +28,7 @@ public class LinearRPM extends Command{
         totalVolts -= change;
 
         motors.run(totalVolts);
+        motors.logVoltage();
         timePassed += 0.02;
     }
 }

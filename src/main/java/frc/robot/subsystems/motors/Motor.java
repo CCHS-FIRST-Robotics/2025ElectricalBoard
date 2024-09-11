@@ -12,7 +12,13 @@ public class Motor {
         io.setVoltage(volts);
     }
 
+    public void getVoltage() {
+        io.getVoltage();
+    }
+
     public void updateInputs(){
         io.updateInputs(inputs);
     }
+
+
 }

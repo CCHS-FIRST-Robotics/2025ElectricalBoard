@@ -6,14 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.RobotBase;
 
-/**
- * to do: 
- * 
- * increase and decrease rotational velocity (linear + exponential)
- * set specific angle
- * make logging work
- */
-
 public final class Main {
     private Main() {}
 

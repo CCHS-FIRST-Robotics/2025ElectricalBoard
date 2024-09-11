@@ -17,4 +17,7 @@ public interface MotorIO {
 
     public default void updateInputs(MotorIOInputs inputs) {
     }
+
+    public default void getVoltage() {
+    }
 }

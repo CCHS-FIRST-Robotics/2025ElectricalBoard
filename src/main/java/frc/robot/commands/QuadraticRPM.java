@@ -33,6 +33,7 @@ public class QuadraticRPM extends Command{
     double scaleVoltage = totalVolts/maxTotalVoltage;
 
     motors.run(scaleVoltage * maxVoltage);
+    motors.logVoltage();
 
     timePassed += 0.02;
 

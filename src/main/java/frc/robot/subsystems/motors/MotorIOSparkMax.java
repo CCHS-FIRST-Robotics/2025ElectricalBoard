@@ -18,6 +18,11 @@ public class MotorIOSparkMax implements MotorIO {
     }
 
     @Override
+    public void getVoltage() {
+        motor.getBusVoltage();
+    }
+
+    @Override
     public void updateInputs(MotorIOInputs inputs) {
         inputs.motorCurrent = motor.getOutputCurrent();
         inputs.motorVoltage = motor.getBusVoltage();

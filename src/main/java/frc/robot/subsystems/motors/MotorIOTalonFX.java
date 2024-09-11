@@ -3,6 +3,8 @@ package frc.robot.subsystems.motors;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DriverStation;
 
 public class MotorIOTalonFX implements MotorIO {
     private TalonFX motor;
@@ -20,6 +22,11 @@ public class MotorIOTalonFX implements MotorIO {
     public void setVoltage(double volts) {
         double percentOutput = volts / 12.0;
         motor.set(TalonFXControlMode.PercentOutput, percentOutput);
+    }
+
+    @Override
+    public void getVoltage() {
+        motor.getMotorOutputVoltage();
     }
 
     @Override
@@ -41,5 +48,7 @@ public class MotorIOTalonFX implements MotorIO {
         if (pidController.atSetpoint()) {
             motor.set(TalonFXControlMode.PercentOutput, 0);
         }
+
+     
     }
 }
