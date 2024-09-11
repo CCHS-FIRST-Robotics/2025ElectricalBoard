@@ -24,6 +24,7 @@ public class LinearProfile extends Command{
     @Override
     public void execute() {
         double change = maxVoltage / (halfWavelength * (1 / Constants.PERIOD));
+        
         if (((int) t / halfWavelength) % 2 == 0) { // increasing
             totalVolts += change;
         } else { // decreasing
