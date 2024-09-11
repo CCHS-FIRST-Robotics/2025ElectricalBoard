@@ -14,9 +14,8 @@ import frc.robot.subsystems.pneumatics.*;
 public class RobotContainer {
     CommandXboxController controller = new CommandXboxController(Constants.CONTROLLER_PORT);
 
-    Trigger nintendo1 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_1)::get);
-    Trigger nintendo2 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_2)::get);
     Trigger irSensor = new Trigger(new DigitalInput(Constants.IR_SENSOR_PORT)::get);
+   //Trigger joystickTrigger = new Trigger(() -> Math.abs(controller.getLeftX()) > 0.2);
 
     FourMotors motors = new FourMotors(
         new Motor(new MotorIOTalonFX(Constants.TALONFX_ID)), // kraken
@@ -48,14 +47,10 @@ public class RobotContainer {
         // button controls
         controller.x().onTrue(new LinearRPM(motors, 0, 12, 10));
         controller.y().onTrue(new QuadraticRPM(motors, 0, 12, 10));
-
-        //-----Pneumatics-----//
-        // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));
-        // controller.a().onTrue(new InstantCommand(() -> pneumatics.togglePiston2()));
+        controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));
+        controller.a().onTrue(new InstantCommand(() -> pneumatics.togglePiston2()));
 
         //-----DIO-----//
-        nintendo1.onTrue(new InstantCommand(() -> System.out.println("switch 1")));
-        nintendo2.onTrue(new InstantCommand(() -> System.out.println("switch 2")));
-        irSensor.onTrue(new InstantCommand(() -> System.out.println("beam broken")));
+        irSensor.onTrue(new InstantCommand(() -> System.out.println("object detected")));
     }
 }

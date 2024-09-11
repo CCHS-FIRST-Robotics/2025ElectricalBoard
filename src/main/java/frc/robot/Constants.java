@@ -6,7 +6,6 @@ package frc.robot;
 
 public final class Constants {
     public static double ANALOG_DEADZONE = 0.3;
-    public static double MAX_VOLTAGE = 11;
 
     public static int CONTROLLER_PORT = 0;
     public static int SWITCH_PORT_1 = 0;

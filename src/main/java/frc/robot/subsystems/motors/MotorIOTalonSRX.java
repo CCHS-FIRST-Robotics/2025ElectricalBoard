@@ -12,7 +12,7 @@ public class MotorIOTalonSRX implements MotorIO {
 
     @Override
     public void setVoltage(double volts) {
-        motor.set(TalonSRXControlMode.PercentOutput, volts / 12);
+        motor.set(TalonSRXControlMode.PercentOutput, volts / 11);
     }
 
     @Override
