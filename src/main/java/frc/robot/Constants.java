@@ -5,7 +5,6 @@
 package frc.robot;
 
 public final class Constants {
-    public static double PERIOD = 0.02;
     public static double ANALOG_DEADZONE = 0.3;
     public static double MAX_VOLTAGE = 11;
 
