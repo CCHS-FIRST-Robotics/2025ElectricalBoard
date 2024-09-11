@@ -11,7 +11,7 @@ public class MotorIOTalonFX implements MotorIO {
     public MotorIOTalonFX(int id){
         motor = new TalonFX(id);
 
-        pidController = new PIDController(1.0, 0.0, 0.1);
+        pidController = new PIDController(1.0, 0.0, 0.1); //tune later on
         pidController.setSetpoint(90); //move to 90 deg
         pidController.setTolerance(3); //3 deg off is fine?
     }
@@ -33,8 +33,8 @@ public class MotorIOTalonFX implements MotorIO {
 
     public void moveToAngle(double angle) {
         pidController.setSetpoint(angle);
-        double currentPosition = motor.getSelectedSensorPosition();
-        double output = pidController.calculate(currentPosition);
+        double currentPos = motor.getSelectedSensorPosition();
+        double output = pidController.calculate(currentPos);
 
         motor.set(TalonFXControlMode.PercentOutput, output);
 
