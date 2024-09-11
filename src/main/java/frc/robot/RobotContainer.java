@@ -33,7 +33,6 @@ public class RobotContainer {
     }
 
     private void configureBindings() {
-        //-----Motors-----//
 
         // joystick controls
         motors.setDefaultCommand(
@@ -49,7 +48,6 @@ public class RobotContainer {
         // button controls
         controller.x().onTrue(new LinearProfile(motors, 0, 12, 10));
         controller.y().onTrue(new QuadraticProfile(motors, 0, 12, 10));
-        controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 
         //-----Pneumatics-----//
         // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));

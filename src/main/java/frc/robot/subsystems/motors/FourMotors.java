@@ -21,17 +21,19 @@ public class FourMotors extends SubsystemBase{
         }
     }
 
-    public void setMotorVoltage(int index, double volts){
+    public void startMotor(int index, double volts) {
         motors[index].setVoltage(volts);
     }
 
-    public void setAllMotorVoltage(double volts){
+    public void run(double volts){
         for(Motor motor : motors){
             motor.setVoltage(volts);
         }
     }
 
-    public void toggleMotors(){
-        setAllMotorVoltage(allMotorsOn ? 0 : 8);
+    public void stopMotors() {
+        for (Motor motor : motors) {
+            motor.setVoltage(0);
+        }
     }
 }

@@ -7,6 +7,7 @@ package frc.robot;
 public final class Constants {
     public static double PERIOD = 0.02;
     public static double ANALOG_DEADZONE = 0.3;
+    public static double MAX_VOLTAGE = 11;
 
     public static int CONTROLLER_PORT = 0;
     public static int SWITCH_PORT_1 = 0;
@@ -20,4 +21,5 @@ public final class Constants {
 
     public static int PISTON_ID_1 = 0;
     public static int PISTON_ID_2 = 1;
+
 }

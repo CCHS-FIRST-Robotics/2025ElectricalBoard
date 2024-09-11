@@ -2,42 +2,32 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.motors.FourMotors;
-import frc.robot.Constants;
 
 public class LinearProfile extends Command{
     FourMotors motors;
     int duration;
     int maxVoltage;
-    int quarterWavelength;
-    
-    double t = 0; 
+    int halfPeriodic;
+    double timePassed = 0;
     double totalVolts = 0;
 
-    public LinearProfile(FourMotors motors, int duration, int maxVoltage, int quarterWavelength){
+    public LinearProfile(FourMotors motors, int duration, int maxVoltage, int halfPeriodic){
         addRequirements(motors);
-        this.motors = motors;
+        this.motors=motors;
         this.duration = duration;
         this.maxVoltage = maxVoltage;
-        this.quarterWavelength = quarterWavelength;
+        this.halfPeriodic = halfPeriodic;
     }
     
     @Override
     public void execute() {
-        double change = maxVoltage / (quarterWavelength * (1 / Constants.PERIOD));
-        if (((int) t / quarterWavelength) % 2 == 0) { // increasing
+        double change = maxVoltage / (halfPeriodic * 1/0.02);
+        if (((int) timePassed / halfPeriodic) % 2 == 0) {
             totalVolts += change;
-        } else { // decreasing
-            totalVolts -= change;
         }
+        totalVolts -= change;
 
-        motors.setAllMotorVoltage(totalVolts);
-        t += Constants.PERIOD; 
-
-        // double linear = ((double) (((int) t / 10) % 2 == 0 ? t % 10 : 10 - t % 10) / 10d) * maxVoltage;
-    }
-
-    @Override
-    public boolean isFinished(){
-        return t > duration;
+        motors.run(totalVolts);
+        timePassed += 0.02;
     }
 }
