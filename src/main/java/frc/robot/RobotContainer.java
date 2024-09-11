@@ -46,8 +46,8 @@ public class RobotContainer {
         );
 
         // button controls
-        controller.x().onTrue(new LinearProfile(motors, 0, 12, 10));
-        controller.y().onTrue(new QuadraticProfile(motors, 0, 12, 10));
+        controller.x().onTrue(new LinearRPM(motors, 0, 12, 10));
+        controller.y().onTrue(new QuadraticRPM(motors, 0, 12, 10));
 
         //-----Pneumatics-----//
         // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));

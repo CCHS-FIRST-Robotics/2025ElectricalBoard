@@ -1,40 +1,45 @@
 package frc.robot.subsystems.motors;
 
-import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.*;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import edu.wpi.first.math.controller.PIDController;
 
 public class MotorIOTalonFX implements MotorIO {
     private TalonFX motor;
+    private final PIDController pidController;
 
-    private StatusSignal<Double> voltageSignal;
-    private StatusSignal<Double> currentSignal;
-    private StatusSignal<Double> positionSignal;
-    private StatusSignal<Double> velocitySignal;
-    private StatusSignal<Double> temperatureSignal;
-    
     public MotorIOTalonFX(int id){
         motor = new TalonFX(id);
 
-        voltageSignal = motor.getMotorVoltage();
-        currentSignal = motor.getStatorCurrent();
-        positionSignal = motor.getPosition();
-        velocitySignal = motor.getVelocity();
-        temperatureSignal = motor.getDeviceTemp();
+        pidController = new PIDController(1.0, 0.0, 0.1);
+        pidController.setSetpoint(90); //move to 90 deg
+        pidController.setTolerance(3); //3 deg off is fine?
     }
 
     @Override
     public void setVoltage(double volts) {
-        motor.setVoltage(volts);
+        double percentOutput = volts / 12.0;
+        motor.set(TalonFXControlMode.PercentOutput, percentOutput);
     }
 
     @Override
     public void updateInputs(MotorIOInputs inputs) {
-        BaseStatusSignal.refreshAll(voltageSignal, currentSignal, positionSignal, velocitySignal, temperatureSignal);
+        inputs.motorCurrent = motor.getStatorCurrent();
+        inputs.motorVoltage = motor.getMotorOutputVoltage();
+        inputs.motorPosition = motor.getSelectedSensorPosition();
+        inputs.motorVelocity = motor.getSelectedSensorVelocity();
+        inputs.motorTemperature = motor.getTemperature();
+    }
 
-        inputs.motorCurrent = voltageSignal.getValue();
-        inputs.motorVoltage = currentSignal.getValue();
-        inputs.motorPosition = positionSignal.getValue();
-        inputs.motorVelocity = temperatureSignal.getValue();
-        inputs.motorTemperature = temperatureSignal.getValue();
+    public void moveToAngle(double angle) {
+        pidController.setSetpoint(angle);
+        double currentPosition = motor.getSelectedSensorPosition();
+        double output = pidController.calculate(currentPosition);
+
+        motor.set(TalonFXControlMode.PercentOutput, output);
+
+        if (pidController.atSetpoint()) {
+            motor.set(TalonFXControlMode.PercentOutput, 0);
+        }
     }
 }

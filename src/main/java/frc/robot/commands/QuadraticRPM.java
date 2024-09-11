@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.motors.FourMotors;
 import frc.robot.Constants;
 
-public class QuadraticProfile extends Command{
+public class QuadraticRPM extends Command{
     FourMotors motors;
     int duration;
     int maxVoltage;
@@ -12,7 +12,7 @@ public class QuadraticProfile extends Command{
     double timePassed = 0; 
     double totalVolts = 0;
 
-    public QuadraticProfile(FourMotors motors, int duration, int maxVoltage, int halfPeriodic){
+    public QuadraticRPM(FourMotors motors, int duration, int maxVoltage, int halfPeriodic){
         addRequirements(motors);
         this.motors = motors;
         this.duration = duration;

@@ -4,8 +4,6 @@ import edu.wpi.first.wpilibj2.command.*;
 
 public class FourMotors extends SubsystemBase{
     private Motor[] motors = new Motor[4];
-    private boolean allMotorsOn = false;
-
 
     public FourMotors(Motor motor0, Motor motor1, Motor motor2, Motor motor3){
         motors[0] = motor0;

@@ -3,7 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.motors.FourMotors;
 
-public class LinearProfile extends Command{
+public class LinearRPM extends Command{
     FourMotors motors;
     int duration;
     int maxVoltage;
@@ -11,7 +11,7 @@ public class LinearProfile extends Command{
     double timePassed = 0;
     double totalVolts = 0;
 
-    public LinearProfile(FourMotors motors, int duration, int maxVoltage, int halfPeriodic){
+    public LinearRPM(FourMotors motors, int duration, int maxVoltage, int halfPeriodic){
         addRequirements(motors);
         this.motors=motors;
         this.duration = duration;
