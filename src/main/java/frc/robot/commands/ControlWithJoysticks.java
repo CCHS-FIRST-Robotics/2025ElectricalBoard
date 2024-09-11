@@ -11,7 +11,6 @@ public class ControlWithJoysticks extends Command{
     Supplier<Double> leftYSupplier;
     Supplier<Double> rightXSupplier;
     Supplier<Double> rightYSupplier;
-
     
     public ControlWithJoysticks(
         FourMotors motors,
@@ -45,6 +44,10 @@ public class ControlWithJoysticks extends Command{
         if(Math.abs(input) < Constants.ANALOG_DEADZONE){
             return 0; 
         }
+
+        //square the input? But isn't the input between -1 and 1? Wouldn't the input just be decreasing then?
+        //does signum just make sure its - or + for reverse direction if joystick is range
+        // -1<=x<=0 || 0<=x<=1?
         return Math.pow(input, 2) * Math.signum(input) * 8;
     }
 }
