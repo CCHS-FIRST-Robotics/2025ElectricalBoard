@@ -4,13 +4,21 @@
 
 package frc.robot;
 
-public class RobotContainer {
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj2.command.button.*;
+import frc.robot.commands.UpDownLinear;
+import frc.robot.subsystems.Motor;
+
+public class RobotContainer {
+    CommandXboxController controller = new CommandXboxController(Constants.CONTROLLER_PORT);
+
+    TalonSRX test = new TalonSRX(0);
     public RobotContainer() {
-        configureBindings();
-     }
+      configureBindings();
+    }
 
     private void configureBindings() {
-        
+        controller.x().onTrue(new UpDownLinear(test));
     }
 }
