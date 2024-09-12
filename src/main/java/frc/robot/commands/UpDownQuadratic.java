@@ -17,7 +17,7 @@ public class UpDownQuadratic extends Command{
     }
 
     @Override
-    public void execute(){ //0.02 seconds period
+    public void execute(){ //0.02 seconds period, time increases by 50 per second
         if(time == 500){
             increasing = false;
         }
@@ -25,11 +25,11 @@ public class UpDownQuadratic extends Command{
             increasing = true;
         }
         if(increasing){
-            motors.set(TalonSRXControlMode.PercentOutput, 6*time*time/625);
+            motors.set(TalonSRXControlMode.PercentOutput, 6d*time*time/62500d);
             time++;
         }
         else{
-            motors.set(TalonSRXControlMode.PercentOutput, -6*(time-50)*(time-50)/625);
+            motors.set(TalonSRXControlMode.PercentOutput, 12d-6d*(time-500d)*(time-500d)/62500d);
             time--;
         }
     }
