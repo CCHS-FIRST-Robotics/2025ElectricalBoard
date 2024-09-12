@@ -34,7 +34,7 @@ public class MotorIOTalonFX implements MotorIO {
         inputs.motorCurrent = currentSignal.getValue();
         inputs.motorVoltage = voltageSignal.getValue();
         inputs.motorPosition = positionSignal.getValue();
-        inputs.motorVelocity = temperatureSignal.getValue();
+        inputs.motorVelocity = velocitySignal.getValue();
         inputs.motorTemperature = temperatureSignal.getValue();
     }
 }
