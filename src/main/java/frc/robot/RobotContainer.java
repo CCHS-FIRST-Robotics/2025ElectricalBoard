@@ -47,7 +47,7 @@ public class RobotContainer {
         );
 
         // button controls
-        controller.x().onTrue(new LinearProfile(motors, 20, 12, 10));
+        controller.x().onTrue(new LukeCode());
         controller.y().onTrue(new QuadraticProfile(motors, 20, 12, 10));
         controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 

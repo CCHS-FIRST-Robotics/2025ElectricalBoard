@@ -10,12 +10,14 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends LoggedRobot {
     RobotContainer robotContainer;
 
+
     @Override
     public void robotInit() {
         robotContainer = new RobotContainer();
+        
 
-        Logger.recordMetadata("ProjectName", "ElectricalBoard2024"); // Set a metadata value
-        Logger.start();
+        //Logger.recordMetadata("ProjectName", "ElectricalBoard2024"); // Set a metadata value
+        //Logger.start();
     }
 
     @Override
