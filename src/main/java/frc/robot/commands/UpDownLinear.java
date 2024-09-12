@@ -17,7 +17,7 @@ public class UpDownLinear extends Command{
     }
 
     @Override
-    public void execute(){ //0.02 seconds period
+    public void execute(){ //0.02 seconds period, 50 cycles per second 
         motors.set(TalonSRXControlMode.PercentOutput, time*12d/(50d*seconds));//after one second, called 50 times, want voltage to be 12/10
         if(time == 500){
             increasing = false;
