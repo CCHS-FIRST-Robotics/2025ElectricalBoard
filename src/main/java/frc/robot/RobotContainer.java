@@ -22,5 +22,6 @@ public class RobotContainer {
     private void configureBindings() {
         controller.x().onTrue(new UpDownLinear(test));
         controller.y().onTrue(new UpDownQuadratic(test));
+        
     }
 }
