@@ -8,10 +8,12 @@ public class Linear extends Command {
     double percent = 1d;
     double time = 0;
     double seconds = 5.0;
+    int duration;
 
-    public Linear(FourMotors motor) {
+    public Linear(FourMotors motor, int duration) {
         addRequirements(motor);
         this.motor = motor;
+        this.duration = duration;
     }
 
     @Override
@@ -31,5 +33,10 @@ public class Linear extends Command {
         if(time == 0) {
             increasing = true;
         }
+    }
+
+    @Override
+    public boolean isFinished(){
+        return time > duration;
     }
 }

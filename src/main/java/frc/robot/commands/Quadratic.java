@@ -7,9 +7,12 @@ public class Quadratic extends Command {
     FourMotors motor;
     double temptime = 0.0;
 
-    public Quadratic(FourMotors motors) {
+    int duration;
+
+    public Quadratic(FourMotors motors, int duration) {
         addRequirements(motors);
         this.motor = motors;
+        this.duration = duration;
     }
 
     @Override
@@ -30,5 +33,10 @@ public class Quadratic extends Command {
             }
         }
         time++;
+    }
+
+    @Override
+    public boolean isFinished(){
+        return time > duration;
     }
 }
