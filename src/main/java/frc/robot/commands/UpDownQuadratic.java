@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -10,8 +9,8 @@ public class UpDownQuadratic extends Command{
     int seconds = 10; //increase for 10 seconds
     boolean increasing = true;
 
-    private TalonSRX motors;
-    public UpDownQuadratic(TalonSRX motors){
+    private TalonFX motors;
+    public UpDownQuadratic(TalonFX motors){
 
         this.motors = motors;
     }
@@ -31,10 +30,10 @@ public class UpDownQuadratic extends Command{
             time--;
         }
         if(time >= 0 && time < 250){
-            motors.set(TalonSRXControlMode.PercentOutput, 6d*time*time/62500d);
+            motors.set(6d*time*time/62500d/12d);
         }
         if(time >= 250 && time <= 500){
-            motors.set(TalonSRXControlMode.PercentOutput, 12d-6d*(time-500d)*(time-500d)/62500d);
+            motors.set(1d-6d*(time-500d)*(time-500d)/62500d/12d);
 
         }
          
