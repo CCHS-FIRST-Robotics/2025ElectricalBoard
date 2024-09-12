@@ -31,4 +31,9 @@ public class LinearRPM extends Command{
         motors.logVoltage();
         timePassed += 0.02;
     }
+
+    @Override
+    public boolean isFinished() {
+        return timePassed > duration;
+    }
 }
