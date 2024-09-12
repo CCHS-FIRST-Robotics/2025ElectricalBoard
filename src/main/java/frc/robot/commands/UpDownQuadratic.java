@@ -25,12 +25,12 @@ public class UpDownQuadratic extends Command{
             increasing = true;
         }
         if(increasing){
-            motors.set(TalonSRXControlMode.PercentOutput, 6d*time*time/62500d);
             time++;
+            motors.set(TalonSRXControlMode.PercentOutput, 6d*time*time/62500d);
         }
         else{
-            motors.set(TalonSRXControlMode.PercentOutput, 12d-6d*(time-500d)*(time-500d)/62500d);
             time--;
+            motors.set(TalonSRXControlMode.PercentOutput, 12d-6d*(time-500d)*(time-500d)/62500d);
         }
     }
     
