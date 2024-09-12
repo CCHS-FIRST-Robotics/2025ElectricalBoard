@@ -31,8 +31,8 @@ public class MotorIOTalonFX implements MotorIO {
     public void updateInputs(MotorIOInputs inputs) {
         BaseStatusSignal.refreshAll(voltageSignal, currentSignal, positionSignal, velocitySignal, temperatureSignal);
 
-        inputs.motorCurrent = voltageSignal.getValue();
-        inputs.motorVoltage = currentSignal.getValue();
+        inputs.motorCurrent = currentSignal.getValue();
+        inputs.motorVoltage = voltageSignal.getValue();
         inputs.motorPosition = positionSignal.getValue();
         inputs.motorVelocity = temperatureSignal.getValue();
         inputs.motorTemperature = temperatureSignal.getValue();
