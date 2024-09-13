@@ -30,7 +30,7 @@ public class UpDownQuadratic extends Command{
             time--;
         }
         if(time >= 0 && time < 250){
-            motors.set(6d*time*time/62500d/12d);f
+            motors.set(6d*time*time/62500d/12d);
         }
         if(time >= 250 && time <= 500){
             motors.set(1d-6d*(time-500d)*(time-500d)/62500d/12d);
