@@ -6,8 +6,8 @@ import com.ctre.phoenix.motorcontrol.*;
 public class Motor {
     private int motorID;
     private TalonSRX motor;
-    public Motor(int motorID){
-        this.motorID = motorID;
+    public Motor(int ID){
+        motorID = ID;
         motor = new TalonSRX(motorID);
     }
     public void setVoltage(double volts){
