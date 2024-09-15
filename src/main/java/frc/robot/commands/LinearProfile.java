@@ -13,12 +13,12 @@ public class LinearProfile extends Command{
     double t = 0; 
     double totalVolts = 0;
 
-    public LinearProfile(FourMotors motors, int duration, int maxVoltage, int quarterWavelength){
+    public LinearProfile(FourMotors motors, int duration, int maxVoltage, int halfWavelength){
         addRequirements(motors);
         this.motors = motors;
         this.duration = duration;
         this.maxVoltage = maxVoltage;
-        this.halfWavelength = quarterWavelength;
+        this.halfWavelength = halfWavelength;
     }
     
     @Override

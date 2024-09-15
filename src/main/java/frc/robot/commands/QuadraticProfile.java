@@ -14,12 +14,12 @@ public class QuadraticProfile extends Command{
     double change = 0;
     double totalVolts = 0;
 
-    public QuadraticProfile(FourMotors motors, int duration, int maxVoltage, int quarterWavelength){
+    public QuadraticProfile(FourMotors motors, int duration, int maxVoltage, int halfWavelength){
         addRequirements(motors);
         this.motors = motors;
         this.duration = duration;
         this.maxVoltage = maxVoltage;
-        this.halfWavelength = quarterWavelength;
+        this.halfWavelength = halfWavelength;
     }
     
     @Override
