@@ -3,13 +3,11 @@ import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.Command;
 public class MoveToAngle extends Command{
-    double angle;
     private TalonFX motor;
-    public MoveToAngle(double angle, TalonFX motor){
-        this.angle = angle;
+    public MoveToAngle(TalonFX motor){
         this.motor = motor;
     }
-    public void turnToAngle(){
+    public void turnToAngle(double angle){
         motor.setPosition(angle/(2*Math.PI));
     }
 }
