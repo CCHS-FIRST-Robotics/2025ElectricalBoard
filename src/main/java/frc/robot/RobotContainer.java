@@ -8,6 +8,7 @@ package frc.robot;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.button.*;
+import frc.robot.commands.MoveToAngle;
 import frc.robot.commands.UpDownLinear;
 import frc.robot.commands.UpDownQuadratic;
 
@@ -15,6 +16,7 @@ public class RobotContainer {
     CommandXboxController controller = new CommandXboxController(Constants.CONTROLLER_PORT);
 
     TalonFX test = new TalonFX(0);
+    MoveToAngle temp = new MoveToAngle(test);
     public RobotContainer() {
       configureBindings();
     }
@@ -22,6 +24,6 @@ public class RobotContainer {
     private void configureBindings() {
         controller.x().onTrue(new UpDownLinear(test));
         controller.y().onTrue(new UpDownQuadratic(test));
-        
+        temp.turnToAngle(1.0);//1 rad
     }
 }
