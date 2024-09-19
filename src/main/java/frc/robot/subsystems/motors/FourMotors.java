@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.*;
 public class FourMotors extends SubsystemBase{
     private Motor[] motors = new Motor[4];
     private boolean allMotorsOn = false;
+    final double MAXVOLTAGE = 12;
 
 
     public FourMotors(Motor motor0, Motor motor1, Motor motor2, Motor motor3){
@@ -22,12 +23,12 @@ public class FourMotors extends SubsystemBase{
     }
 
     public void setMotorVoltage(int index, double volts){
-        motors[index].setVoltage(volts);
+        motors[index].setVoltage(Math.min(MAXVOLTAGE, volts));
     }
 
     public void setAllMotorVoltage(double volts){
         for(Motor motor : motors){
-            motor.setVoltage(volts);
+            motor.setVoltage(Math.min(MAXVOLTAGE, volts));
         }
     }
 
