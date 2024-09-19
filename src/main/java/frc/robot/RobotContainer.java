@@ -23,8 +23,10 @@ public class RobotContainer {
     }
     
     private void configureBindings() {
-      
-        MoveToAngle temp = new MoveToAngle(test, () -> controller.getLeftX(), () -> controller.getLeftY());
+        System.out.println("why");
+        // MoveToAngle temp = new MoveToAngle(test, () -> controller.getLeftX(), () -> controller.getLeftY());
+        controller.x().onTrue( new MoveToAngle(test, () -> controller.getLeftX(), () -> controller.getLeftY()));
+        
       //  controller.x().onTrue(new UpDownLinear(test));
       //  controller.y().onTrue(new UpDownQuadratic(test));
       

@@ -12,12 +12,14 @@ public class MoveToAngle extends Command{
         this.motor = motor;
     }
     public void turnToAngle(double angle){
+        System.out.println(angle);
         motor.setPosition(angle/(2*Math.PI));
     }
     @Override
     public void execute(){
         double leftX = x.get();
         double leftY = y.get();
+        // System.out.println(leftX + ", " + leftY);
         if(leftX >= 0){
             turnToAngle(Math.atan(leftY/leftX));
         }
