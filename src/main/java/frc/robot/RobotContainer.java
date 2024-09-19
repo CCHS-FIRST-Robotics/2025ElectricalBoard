@@ -16,14 +16,17 @@ public class RobotContainer {
     CommandXboxController controller = new CommandXboxController(Constants.CONTROLLER_PORT);
 
     TalonFX test = new TalonFX(0);
-    MoveToAngle temp = new MoveToAngle(test);
+    MoveToAngle temp;
     public RobotContainer() {
       configureBindings();
+      
     }
-
+    
     private void configureBindings() {
+      
+        MoveToAngle temp = new MoveToAngle(test, () -> controller.getLeftX(), () -> controller.getLeftY());
         controller.x().onTrue(new UpDownLinear(test));
         controller.y().onTrue(new UpDownQuadratic(test));
-        temp.turnToAngle(1.0);//1 rad
+      
     }
 }
