@@ -17,11 +17,11 @@ public class RobotContainer {
     Trigger nintendo1 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_1)::get);
     Trigger nintendo2 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_2)::get);
     Trigger irSensor = new Trigger(new DigitalInput(Constants.IR_SENSOR_PORT)::get);
-
+    
     FourMotors motors = new FourMotors(
         new Motor(new MotorIOTalonFX(Constants.TALONFX_ID)), // kraken
-        new Motor(new MotorIOSparkMax(Constants.SPARKMAX_ID)) // neo
-        //new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_1)), // cim1
+        // new Motor(new MotorIOSparkMax(Constants.SPARKMAX_ID)) // neo
+        new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_1)) // cim1
         //new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_2)) // cim2 //! 
         
     );
