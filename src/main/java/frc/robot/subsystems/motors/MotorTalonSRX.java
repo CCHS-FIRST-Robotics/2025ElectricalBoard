@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+package frc.robot.subsystems.motors;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -6,10 +6,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.*;
 
-public class Motor extends SubsystemBase{
+public class MotorTalonSRX extends SubsystemBase{
     private int motorID;
     private TalonSRX motor;
-    public Motor(int ID){
+    public MotorTalonSRX(int ID){
         motorID = ID;
         motor = new TalonSRX(motorID);
     }
