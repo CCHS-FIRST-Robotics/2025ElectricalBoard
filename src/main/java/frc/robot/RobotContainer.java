@@ -4,19 +4,14 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj2.command.*;
+// import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.*;
-import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.commands.*;
 import frc.robot.subsystems.motors.*;
 import frc.robot.subsystems.pneumatics.*;
 
 public class RobotContainer {
     CommandXboxController controller = new CommandXboxController(Constants.CONTROLLER_PORT);
-
-    Trigger nintendo1 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_1)::get);
-    Trigger nintendo2 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_2)::get);
-    Trigger irSensor = new Trigger(new DigitalInput(Constants.IR_SENSOR_PORT)::get);
     
     FourMotors motors = new FourMotors(
         new Motor(new MotorIOTalonFX(Constants.TALONFX_ID)), // kraken
@@ -36,27 +31,22 @@ public class RobotContainer {
         //-----Motors-----//
 
         // joystick controls
-        motors.setDefaultCommand(
-            new ControlWithJoysticks(
-                motors,
-                () -> controller.getLeftX(),
-                () -> controller.getLeftY(),
-                () -> controller.getRightX(),
-                () -> controller.getRightY()
-            )
-        );
+        // motors.setDefaultCommand(
+        //     new ControlWithJoysticks(
+        //         motors,
+        //         () -> controller.getLeftX(),
+        //         () -> controller.getLeftY(),
+        //         () -> controller.getRightX(),
+        //         () -> controller.getRightY()
+        //     )
+        // );
 
         // button controls
-        controller.x().onTrue(new LukeCode());
-        controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
+        controller.x().onTrue(new LukeCode(motors));
+        // controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 
         //-----Pneumatics-----//
         // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));
         // controller.a().onTrue(new InstantCommand(() -> pneumatics.togglePiston2()));
-
-        //-----DIO-----//
-        nintendo1.onTrue(new InstantCommand(() -> System.out.println("switch 1")));
-        nintendo2.onTrue(new InstantCommand(() -> System.out.println("switch 2")));
-        irSensor.onTrue(new InstantCommand(() -> System.out.println("beam broken")));
     }
 }

@@ -15,12 +15,12 @@ public class FourMotors extends SubsystemBase{
         //motors[3] = motor3;
     }
 
-    @Override
-    public void periodic() {
-        for(Motor motor : motors){
-            motor.updateInputs();
-        }
-    }
+    // @Override
+    // public void periodic() {
+    //     for(Motor motor : motors){
+    //         motor.updateInputs();
+    //     }
+    // }
 
     public void setMotorVoltage(int index, double volts){
         motors[index].setVoltage(Math.min(MAXVOLTAGE, volts));
