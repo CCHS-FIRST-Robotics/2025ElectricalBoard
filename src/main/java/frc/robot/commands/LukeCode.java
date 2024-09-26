@@ -22,42 +22,38 @@ public class LukeCode extends Command{
     public void execute(){
         switch (state) {
             case IDLE: {
-                if (timer == 0) {
+                if (timer <= 0) {
                     state = State.SPEEDUP;
-                    timer = 50;
-                    System.out.println("speedup");
-                    System.out.println(state);
+                    timer = 500;
+                    //System.out.println(state);
                 }
                 timer--;
                 break;
             }
             case SPEEDUP: {
-                motorVoltage += 0.2 / 12;
+                motorVoltage += 0.024;
                 if (motorVoltage >= 12) {
                     state = State.MAX;
-                    timer = 50;
-                    System.out.println("max");
-                    System.out.println(state);
+                    timer = 500;
+                    //System.out.println(state);
                 }
                 break;
             }
             case MAX: {
-                if (timer == 0) {
+                if (timer <= 0) {
                     state = State.SLOWDOWN;
-                    timer = 50;
-                    System.out.println("slowdown");
-                    System.out.println(state);
+                    timer = 500;
+                    //System.out.println(state);
                 }
                 timer--;
                 break;
             }
             case SLOWDOWN: {
-                motorVoltage -= 0.2 / 12;
-                if (motorVoltage == 0) {
+                motorVoltage -= 0.024;
+                if (motorVoltage <= 0) {
                     state = State.IDLE;
-                    timer = 50;
-                    System.out.println("idle");
-                    System.out.println(state);
+                    timer = 500;
+                    //System.out.println(state);
                 }
                 break;
             }
