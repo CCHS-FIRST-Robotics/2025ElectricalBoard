@@ -34,5 +34,6 @@ public class FourMotors extends SubsystemBase{
 
     public void toggleMotors(){
         setAllMotorVoltage(allMotorsOn ? 0 : 8);
+        allMotorsOn = !allMotorsOn;
     }
 }
