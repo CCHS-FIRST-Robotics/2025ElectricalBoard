@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 // import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.commands.*;
@@ -12,6 +14,8 @@ import frc.robot.subsystems.pneumatics.*;
 
 public class RobotContainer {
     CommandXboxController controller = new CommandXboxController(Constants.CONTROLLER_PORT);
+    Trigger button = new Trigger(new DigitalInput(0)::get);
+    //DigitalInput button = new DigitalInput(0);
     
     FourMotors motors = new FourMotors(
         new Motor(new MotorIOTalonFX(Constants.TALONFX_ID)), // kraken
@@ -43,6 +47,9 @@ public class RobotContainer {
 
         // button controls
         controller.x().onTrue(new LukeCode(motors));
+        button.onTrue(new InstantCommand(()->motors.toggleMotors()));
+        
+        
         // controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 
         //-----Pneumatics-----//
