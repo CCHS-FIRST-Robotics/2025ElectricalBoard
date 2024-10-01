@@ -28,6 +28,11 @@ public class MotorIOTalonFX implements MotorIO {
     }
 
     @Override
+    public void setPosition(double radians){
+        motor.setPosition(radians / (2 * Math.PI));
+    }
+
+    @Override
     public void updateInputs(MotorIOInputs inputs) {
         BaseStatusSignal.refreshAll(voltageSignal, currentSignal, positionSignal, velocitySignal, temperatureSignal);
 

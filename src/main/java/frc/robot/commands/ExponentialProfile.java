@@ -1,11 +1,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.motors.FourMotors;
+import frc.robot.subsystems.motors.GroupOfMotors;
 import frc.robot.Constants;
 
-public class QuadraticProfile extends Command{
-    FourMotors motors;
+public class ExponentialProfile extends Command{
+    GroupOfMotors motors;
     int duration;
     int maxVoltage;
     int halfWavelength;
@@ -14,7 +14,7 @@ public class QuadraticProfile extends Command{
     double change = 0;
     double totalVolts = 0;
 
-    public QuadraticProfile(FourMotors motors, int duration, int maxVoltage, int halfWavelength){
+    public ExponentialProfile(GroupOfMotors motors, int duration, int maxVoltage, int halfWavelength){
         addRequirements(motors);
         this.motors = motors;
         this.duration = duration;

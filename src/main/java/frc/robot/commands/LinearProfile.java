@@ -1,19 +1,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.motors.FourMotors;
+import frc.robot.subsystems.motors.GroupOfMotors;
 import frc.robot.Constants;
 
 public class LinearProfile extends Command{
-    FourMotors motors;
+    GroupOfMotors motors;
     int duration;
     int maxVoltage;
     int halfWavelength;
     
-    double t = 0; 
+    double t = 0;
     double totalVolts = 0;
 
-    public LinearProfile(FourMotors motors, int duration, int maxVoltage, int halfWavelength){
+    public LinearProfile(GroupOfMotors motors, int duration, int maxVoltage, int halfWavelength){
         addRequirements(motors);
         this.motors = motors;
         this.duration = duration;

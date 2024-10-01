@@ -15,6 +15,9 @@ public interface MotorIO {
     public default void setVoltage(double volts) {
     }
 
+    public default void setPosition(double radians){
+    }
+
     public default void updateInputs(MotorIOInputs inputs) {
     }
 }

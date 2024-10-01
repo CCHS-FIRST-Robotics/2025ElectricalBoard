@@ -18,6 +18,11 @@ public class MotorIOSparkMax implements MotorIO {
     }
 
     @Override
+    public void setPosition(double radians){
+        encoder.setPosition(radians / (2 * Math.PI));
+    }
+
+    @Override
     public void updateInputs(MotorIOInputs inputs) {
         inputs.motorCurrent = motor.getOutputCurrent();
         inputs.motorVoltage = motor.getBusVoltage();

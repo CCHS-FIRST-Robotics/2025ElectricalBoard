@@ -12,6 +12,10 @@ public class Motor {
         io.setVoltage(volts);
     }
 
+    public void setPosition(double radians){
+        io.setPosition(radians);
+    }
+
     public void updateInputs(){
         io.updateInputs(inputs);
     }

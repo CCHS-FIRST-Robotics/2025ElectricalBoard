@@ -2,11 +2,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import java.util.function.Supplier;
-import frc.robot.subsystems.motors.FourMotors;
+import frc.robot.subsystems.motors.GroupOfMotors;
 import frc.robot.Constants;
 
 public class ControlWithJoysticks extends Command{
-    FourMotors motors;
+    GroupOfMotors motors;
     Supplier<Double> leftXSupplier;
     Supplier<Double> leftYSupplier;
     Supplier<Double> rightXSupplier;
@@ -14,7 +14,7 @@ public class ControlWithJoysticks extends Command{
 
     
     public ControlWithJoysticks(
-        FourMotors motors,
+        GroupOfMotors motors,
         Supplier<Double> leftXSupplier,
         Supplier<Double> leftYSupplier,
         Supplier<Double> rightXSupplier,
@@ -30,15 +30,15 @@ public class ControlWithJoysticks extends Command{
     
     @Override
     public void execute() {
-        double leftX = leftXSupplier.get();
-        double leftY = leftYSupplier.get();
-        double rightX = rightXSupplier.get();
-        double rightY = rightYSupplier.get();
+        // double leftX = leftXSupplier.get();
+        // double leftY = leftYSupplier.get();
+        // double rightX = rightXSupplier.get();
+        // double rightY = rightYSupplier.get();
         
-        motors.setMotorVoltage(0, applyPreferences(leftX));
-        motors.setMotorVoltage(1, applyPreferences(leftY));
-        motors.setMotorVoltage(2, applyPreferences(rightX));
-        motors.setMotorVoltage(3, applyPreferences(rightY));
+        // motors.setMotorVoltage(0, applyPreferences(leftX));
+        // motors.setMotorVoltage(1, applyPreferences(leftY));
+        // motors.setMotorVoltage(2, applyPreferences(rightX));
+        // motors.setMotorVoltage(3, applyPreferences(rightY));
     }
 
     public double applyPreferences(double input){

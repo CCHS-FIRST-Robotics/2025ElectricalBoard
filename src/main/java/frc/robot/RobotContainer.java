@@ -18,18 +18,15 @@ public class RobotContainer {
     Trigger nintendo2 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_2)::get);
     Trigger irSensor = new Trigger(new DigitalInput(Constants.IR_SENSOR_PORT)::get);
 
-    FourMotors motors = new FourMotors(
-        new Motor(new MotorIOTalonFX(Constants.TALONFX_ID)), // kraken
-        new Motor(new MotorIOSparkMax(Constants.SPARKMAX_ID)), // neo
-        new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_1)), // cim1
-        new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_2)) // cim2 //! 
-        
-    );
+    GroupOfMotors motors = new GroupOfMotors();
     
     Pneumatics pneumatics = new Pneumatics(Constants.PISTON_ID_1, Constants.PISTON_ID_2);
 
     public RobotContainer() {
-      configureBindings();
+        motors.addMotor(new Motor(new MotorIOTalonFX(Constants.TALONFX_ID))); // kraken
+        motors.addMotor(new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_1))); // cim
+
+        configureBindings();
     }
 
     private void configureBindings() {
@@ -48,7 +45,7 @@ public class RobotContainer {
 
         // button controls
         controller.x().onTrue(new LinearProfile(motors, 20, 12, 10));
-        controller.y().onTrue(new QuadraticProfile(motors, 20, 12, 10));
+        controller.y().onTrue(new ExponentialProfile(motors, 20, 12, 10));
         controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 
         //-----Pneumatics-----//

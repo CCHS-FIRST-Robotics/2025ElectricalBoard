@@ -1,17 +1,18 @@
 package frc.robot.subsystems.motors;
 
 import edu.wpi.first.wpilibj2.command.*;
+import java.util.ArrayList;
 
-public class FourMotors extends SubsystemBase{
-    private Motor[] motors = new Motor[4];
+public class GroupOfMotors extends SubsystemBase{
+    private ArrayList<Motor> motors;
     private boolean allMotorsOn = false;
 
+    public GroupOfMotors(){
+        motors = new ArrayList<Motor>();
+    }
 
-    public FourMotors(Motor motor0, Motor motor1, Motor motor2, Motor motor3){
-        motors[0] = motor0;
-        motors[1] = motor1;
-        motors[2] = motor2;
-        motors[3] = motor3;
+    public void addMotor(Motor motor){
+        motors.add(motor);
     }
 
     @Override
@@ -22,7 +23,7 @@ public class FourMotors extends SubsystemBase{
     }
 
     public void setMotorVoltage(int index, double volts){
-        motors[index].setVoltage(volts);
+        motors.get(index).setVoltage(volts);
     }
 
     public void setAllMotorVoltage(double volts){
@@ -33,5 +34,6 @@ public class FourMotors extends SubsystemBase{
 
     public void toggleMotors(){
         setAllMotorVoltage(allMotorsOn ? 0 : 8);
+        allMotorsOn = !allMotorsOn;
     }
 }
