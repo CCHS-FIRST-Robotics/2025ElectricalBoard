@@ -6,17 +6,17 @@ import frc.robot.subsystems.motors.FourMotors;
 
 public class JoystickMotor extends Command{
 
-        public FourMotors motors;
-        public CommandXboxController controller;
-        public double x;
-        public double y;
+    public FourMotors motors;
+    public CommandXboxController controller;
+    public double x;
+    public double y;
 
-        public double speed;
+    public double speed;
 
-        public JoystickMotor(FourMotors motors, CommandXboxController controller){
-            this.motors = motors;
-            this.controller = controller;
-            addRequirements(motors);
+    public JoystickMotor(FourMotors motors, CommandXboxController controller){
+        this.motors = motors;
+        this.controller = controller;
+        addRequirements(motors);
     }
 
     @Override
