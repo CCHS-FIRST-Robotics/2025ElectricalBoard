@@ -48,6 +48,7 @@ public class RobotContainer {
         // button controls
         controller.x().onTrue(new LukeCode(motors));
         button.onTrue(new InstantCommand(()->motors.toggleMotors()));
+        controller.b().onTrue(new JoystickMotor(motors, controller));
         
         
         // controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
