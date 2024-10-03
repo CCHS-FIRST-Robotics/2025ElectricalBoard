@@ -6,17 +6,17 @@ import frc.robot.subsystems.motors.FourMotors;
 
 public class JoystickMotor extends Command{
 
-        public FourMotors motors;
-        public CommandXboxController controller;
-        public double x;
-        public double y;
+    public FourMotors motors;
+    public CommandXboxController controller;
+    public double x;
+    public double y;
 
-        public double speed;
+    public double speed;
 
-        public JoystickMotor(FourMotors motors, CommandXboxController controller){
-            this.motors = motors;
-            this.controller = controller;
-            addRequirements(motors);
+    public JoystickMotor(FourMotors motors, CommandXboxController controller){
+        this.motors = motors;
+        this.controller = controller;
+        addRequirements(motors);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class JoystickMotor extends Command{
         y = controller.getLeftY();
         speed = Math.sqrt(((x * x) + (y * y))); //Finding Magnitude
 
-        if (Math.abs(speed) < 0.6){
+        if (Math.abs(speed) < 0.06){
             speed = 0;
         }
         else{
