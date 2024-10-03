@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.commands.MoveToAngle;
-//import frc.robot.commands.UpDownLinear;
+import frc.robot.commands.UpDownLinear;
 //import frc.robot.commands.UpDownQuadratic;
 
 public class RobotContainer {
@@ -27,9 +27,9 @@ public class RobotContainer {
     private void configureBindings() {
         System.out.println("why");
         // MoveToAngle temp = new MoveToAngle(test, () -> controller.getLeftX(), () -> controller.getLeftY());
-        controller.x().onTrue( new MoveToAngle(test, () -> controller.getLeftX(), () -> controller.getLeftY()));
-         nintendo1.onTrue(new InstantCommand(() -> System.out.println("switch 1")));
-      //  controller.x().onTrue(new UpDownLinear(test));
+     //   controller.x().onTrue( new MoveToAngle(test, () -> controller.getLeftX(), () -> controller.getLeftY()));
+    //     nintendo1.onTrue(new InstantCommand(() -> System.out.println("switch 1")));
+        controller.x().toggleOnTrue(new UpDownLinear(test));
       //  controller.y().onTrue(new UpDownQuadratic(test));
       
     }
