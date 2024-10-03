@@ -30,15 +30,15 @@ public class ControlWithJoysticks extends Command{
     
     @Override
     public void execute() {
-        // double leftX = leftXSupplier.get();
-        // double leftY = leftYSupplier.get();
-        // double rightX = rightXSupplier.get();
-        // double rightY = rightYSupplier.get();
+        double leftX = leftXSupplier.get();
+        double leftY = leftYSupplier.get();
+        double rightX = rightXSupplier.get();
+        double rightY = rightYSupplier.get();
         
-        // motors.setMotorVoltage(0, applyPreferences(leftX));
-        // motors.setMotorVoltage(1, applyPreferences(leftY));
-        // motors.setMotorVoltage(2, applyPreferences(rightX));
-        // motors.setMotorVoltage(3, applyPreferences(rightY));
+        motors.setMotorVoltage(0, applyPreferences(leftX));
+        motors.setMotorVoltage(1, applyPreferences(leftY));
+        motors.setMotorVoltage(2, applyPreferences(rightX));
+        motors.setMotorVoltage(3, applyPreferences(rightY));
     }
 
     public double applyPreferences(double input){

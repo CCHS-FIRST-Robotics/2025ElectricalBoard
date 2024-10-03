@@ -1,5 +1,7 @@
 package frc.robot.subsystems.motors;
 
+import org.littletonrobotics.junction.Logger;
+
 public class Motor {
     private MotorIO io;
     private MotorIOInputsAutoLogged inputs = new MotorIOInputsAutoLogged();
@@ -18,5 +20,6 @@ public class Motor {
 
     public void updateInputs(){
         io.updateInputs(inputs);
+        Logger.processInputs("motor", inputs);
     }
 }

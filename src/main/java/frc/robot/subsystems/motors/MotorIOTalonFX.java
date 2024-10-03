@@ -1,10 +1,16 @@
 package frc.robot.subsystems.motors;
 
-import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.*;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.configs.Slot0Configs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.MotionMagicVoltage;
 
 public class MotorIOTalonFX implements MotorIO {
     private TalonFX motor;
+    private final TalonFXConfiguration motorConfig = new TalonFXConfiguration();
+    private final MotionMagicVoltage motorMotionMagicVoltage = new MotionMagicVoltage(0);
+    private final Slot0Configs PID = motorConfig.Slot0;
 
     private StatusSignal<Double> voltageSignal;
     private StatusSignal<Double> currentSignal;
@@ -20,6 +26,14 @@ public class MotorIOTalonFX implements MotorIO {
         positionSignal = motor.getPosition();
         velocitySignal = motor.getVelocity();
         temperatureSignal = motor.getDeviceTemp();
+
+        PID.kP = 0.1;
+        PID.kD = 0;
+        PID.kI = 0;
+
+        PID.kS = 0;
+        PID.kV = 0;
+        PID.kA = 0;
     }
 
     @Override
@@ -29,7 +43,8 @@ public class MotorIOTalonFX implements MotorIO {
 
     @Override
     public void setPosition(double radians){
-        motor.setPosition(radians / (2 * Math.PI));
+        motor.setControl(motorMotionMagicVoltage.withPosition(radians).withSlot(0));
+        System.out.println("uwu");
     }
 
     @Override

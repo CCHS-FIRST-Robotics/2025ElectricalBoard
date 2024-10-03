@@ -6,6 +6,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.*;
+
+import org.littletonrobotics.junction.Logger;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.commands.*;
 import frc.robot.subsystems.motors.*;
@@ -33,20 +36,21 @@ public class RobotContainer {
         //-----Motors-----//
 
         // joystick controls
-        // motors.setDefaultCommand(
-        //     new ControlWithJoysticks(
-        //         motors,
-        //         () -> controller.getLeftX(),
-        //         () -> controller.getLeftY(),
-        //         () -> controller.getRightX(),
-        //         () -> controller.getRightY()
-        //     )
-        // );
+        motors.setDefaultCommand(
+            new ControlWithJoysticks(
+                motors,
+                () -> controller.getLeftX(),
+                () -> controller.getLeftY(),
+                () -> controller.getRightX(),
+                () -> controller.getRightY()
+            )
+        );
 
         // button controls
         controller.x().onTrue(new LinearProfile(motors, 20, 12, 10));
         controller.y().onTrue(new ExponentialProfile(motors, 20, 12, 10));
-        controller.b().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Math.PI)));
+        // controller.b().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Math.PI)));
+        controller.b().onTrue(new InstantCommand(() -> Logger.recordOutput("hi", 0)));
         controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 
         //-----Pneumatics-----//
