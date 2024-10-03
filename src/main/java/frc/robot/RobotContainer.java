@@ -33,15 +33,15 @@ public class RobotContainer {
         //-----Motors-----//
 
         // joystick controls
-        motors.setDefaultCommand(
-            new ControlWithJoysticks(
-                motors,
-                () -> controller.getLeftX(),
-                () -> controller.getLeftY(),
-                () -> controller.getRightX(),
-                () -> controller.getRightY()
-            )
-        );
+        // motors.setDefaultCommand(
+        //     new ControlWithJoysticks(
+        //         motors,
+        //         () -> controller.getLeftX(),
+        //         () -> controller.getLeftY(),
+        //         () -> controller.getRightX(),
+        //         () -> controller.getRightY()
+        //     )
+        // );
 
         // button controls
         controller.x().onTrue(new LinearProfile(motors, 20, 12, 10));
