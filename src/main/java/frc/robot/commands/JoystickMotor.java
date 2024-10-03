@@ -8,6 +8,9 @@ public class JoystickMotor extends Command{
 
         public FourMotors motors;
         public CommandXboxController controller;
+        public double x;
+        public double y;
+
         public double speed;
 
         public JoystickMotor(FourMotors motors, CommandXboxController controller){
@@ -18,7 +21,17 @@ public class JoystickMotor extends Command{
 
     @Override
     public void execute() {
-        speed = Math.sqrt(((controller.getLeftX() * controller.getLeftX()) + (controller.getLeftY() * controller.getLeftY()))) * 12; //Finding Magnitude
+        x = controller.getLeftX();
+        y = controller.getLeftY();
+        speed = Math.sqrt(((x * x) + (y * y))); //Finding Magnitude
+
+        if (Math.abs(speed) < 0.6){
+            speed = 0;
+        }
+        else{
+            speed *= 12;
+            speed *= Math.signum(y);
+        }
 
         motors.setAllMotorVoltage(speed);
     }
