@@ -25,7 +25,7 @@ public class JoystickMotor extends Command{
         y = controller.getLeftY();
         speed = Math.sqrt(((x * x) + (y * y))); //Finding Magnitude
 
-        if (Math.abs(speed) < 0.6){
+        if (Math.abs(speed) < 0.06){
             speed = 0;
         }
         else{
