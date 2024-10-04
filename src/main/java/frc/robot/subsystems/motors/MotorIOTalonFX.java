@@ -12,8 +12,8 @@ import edu.wpi.first.units.*;
 public class MotorIOTalonFX implements MotorIO {
     private TalonFX motor;
     private final TalonFXConfiguration motorConfig = new TalonFXConfiguration();
+    private final Slot0Configs slot0Config = motorConfig.Slot0;
     private final MotionMagicVoltage motorMotionMagicVoltage = new MotionMagicVoltage(0);
-    private final Slot0Configs PID = motorConfig.Slot0;
 
     private StatusSignal<Double> voltageSignal;
     private StatusSignal<Double> currentSignal;
@@ -23,6 +23,7 @@ public class MotorIOTalonFX implements MotorIO {
     
     public MotorIOTalonFX(int id){
         motor = new TalonFX(id);
+        motor.getConfigurator().apply(motorConfig);
 
         voltageSignal = motor.getMotorVoltage();
         currentSignal = motor.getStatorCurrent();
@@ -30,13 +31,13 @@ public class MotorIOTalonFX implements MotorIO {
         velocitySignal = motor.getVelocity();
         temperatureSignal = motor.getDeviceTemp();
 
-        PID.kP = 0.1;
-        PID.kD = 0;
-        PID.kI = 0;
+        slot0Config.kP = 0.1;
+        slot0Config.kD = 0;
+        slot0Config.kI = 0;
 
-        PID.kS = 0;
-        PID.kV = 0;
-        PID.kA = 0;
+        slot0Config.kS = 0;
+        slot0Config.kV = 0;
+        slot0Config.kA = 0;
     }
 
     @Override
@@ -48,6 +49,7 @@ public class MotorIOTalonFX implements MotorIO {
     public void setPosition(Measure<Angle> radians){
         motor.setControl(motorMotionMagicVoltage.withPosition(radians.in(Rotations)).withSlot(0));
     }
+
 
     @Override
     public void updateInputs(MotorIOInputs inputs) {
