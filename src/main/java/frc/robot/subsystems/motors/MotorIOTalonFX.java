@@ -1,10 +1,13 @@
 package frc.robot.subsystems.motors;
 
+import static edu.wpi.first.units.Units.*;
+
 import com.ctre.phoenix6.*;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
+import com.ctre.phoenix6.configs.Slot0Configs;
+import edu.wpi.first.units.*;
 
 public class MotorIOTalonFX implements MotorIO {
     private TalonFX motor;
@@ -37,14 +40,13 @@ public class MotorIOTalonFX implements MotorIO {
     }
 
     @Override
-    public void setVoltage(double volts) {
-        motor.setVoltage(volts);
+    public void setVoltage(Measure<Voltage> volts) {
+        motor.setVoltage(volts.in(Volts));
     }
 
     @Override
-    public void setPosition(double radians){
-        motor.setControl(motorMotionMagicVoltage.withPosition(radians).withSlot(0));
-        System.out.println("uwu");
+    public void setPosition(Measure<Angle> radians){
+        motor.setControl(motorMotionMagicVoltage.withPosition(radians.in(Rotations)).withSlot(0));
     }
 
     @Override

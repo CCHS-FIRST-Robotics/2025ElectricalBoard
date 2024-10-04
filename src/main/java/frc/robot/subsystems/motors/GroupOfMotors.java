@@ -1,7 +1,10 @@
 package frc.robot.subsystems.motors;
 
+import static edu.wpi.first.units.Units.*;
+
 import edu.wpi.first.wpilibj2.command.*;
 import java.util.ArrayList;
+import edu.wpi.first.units.*;
 
 public class GroupOfMotors extends SubsystemBase{
     private ArrayList<Motor> motors;
@@ -22,22 +25,22 @@ public class GroupOfMotors extends SubsystemBase{
         }
     }
 
-    public void setMotorVoltage(int index, double volts){
+    public void setMotorVoltage(int index, Measure<Voltage> volts){
         motors.get(index).setVoltage(volts);
     }
 
-    public void setMotorPosition(int index, double radians){
+    public void setMotorPosition(int index, Measure<Angle> radians){
         motors.get(index).setPosition(radians);
     }
 
-    public void setAllMotorVoltage(double volts){
+    public void setAllMotorVoltage(Measure<Voltage> volts){
         for(Motor motor : motors){
             motor.setVoltage(volts);
         }
     }
 
     public void toggleMotors(){
-        setAllMotorVoltage(allMotorsOn ? 0 : 8);
+        setAllMotorVoltage(allMotorsOn ? Volts.of(0) : Volts.of(8));
         allMotorsOn = !allMotorsOn;
     }
 }

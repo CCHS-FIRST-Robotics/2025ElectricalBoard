@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import static edu.wpi.first.units.Units.*;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.motors.GroupOfMotors;
 import frc.robot.Constants;
@@ -31,7 +33,7 @@ public class LinearProfile extends Command{
             totalVolts -= change;
         }
 
-        motors.setAllMotorVoltage(totalVolts);
+        motors.setAllMotorVoltage(Volts.of(totalVolts));
         t += Constants.PERIOD; 
     }
 

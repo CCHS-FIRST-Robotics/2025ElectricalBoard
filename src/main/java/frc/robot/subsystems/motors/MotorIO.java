@@ -1,6 +1,7 @@
 package frc.robot.subsystems.motors;
 
 import org.littletonrobotics.junction.AutoLog;
+import edu.wpi.first.units.*;
 
 public interface MotorIO {
     @AutoLog
@@ -12,10 +13,10 @@ public interface MotorIO {
         public double motorTemperature;
     }
 
-    public default void setVoltage(double volts) {
+    public default void setVoltage(Measure<Voltage> volts) {
     }
 
-    public default void setPosition(double radians){
+    public default void setPosition(Measure<Angle> radians){
     }
 
     public default void updateInputs(MotorIOInputs inputs) {

@@ -1,6 +1,7 @@
 package frc.robot.subsystems.motors;
 
 import org.littletonrobotics.junction.Logger;
+import edu.wpi.first.units.*;
 
 public class Motor {
     private MotorIO io;
@@ -10,11 +11,11 @@ public class Motor {
         this.io = io;
     }
 
-    public void setVoltage(double volts){
+    public void setVoltage(Measure<Voltage> volts){
         io.setVoltage(volts);
     }
 
-    public void setPosition(double radians){
+    public void setPosition(Measure<Angle> radians){
         io.setPosition(radians);
     }
 
