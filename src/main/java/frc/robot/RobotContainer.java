@@ -2,7 +2,6 @@ package frc.robot;
 
 
 import com.ctre.phoenix6.hardware.TalonFX;
-
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -20,8 +19,8 @@ public class RobotContainer {
     }
 
     private void configureBindings() {
-        Trigger clawButton = transmitter.b();
-        clawButton.onTrue(new InstantCommand(() -> moveToAngle(90)));
+        Trigger Button = transmitter.b();
+        Button.onTrue(new InstantCommand(() -> moveToAngle(90)));
   
     }
 
