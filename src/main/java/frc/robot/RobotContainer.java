@@ -14,7 +14,7 @@ public class RobotContainer {
 
     public RobotContainer() {
         pidController.setSetpoint(90); //90 deg (pi/2 rad)
-        pidController.setTolerance(5, 10); //3 deg off is fine?
+        pidController.setTolerance(5, 10); //position tolerance, velocity tolerance
         configureBindings();
     }
 
