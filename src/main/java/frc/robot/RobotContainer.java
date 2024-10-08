@@ -28,7 +28,7 @@ public class RobotContainer {
         System.out.println("why");
         // MoveToAngle temp = new MoveToAngle(test, () -> controller.getLeftX(), () -> controller.getLeftY());
      //   controller.x().onTrue( new MoveToAngle(test, () -> controller.getLeftX(), () -> controller.getLeftY()));
-    //     nintendo1.onTrue(new InstantCommand(() -> System.out.println("switch 1")));
+        nintendo1.onTrue(new InstantCommand(() -> System.out.println("switch 1")));
         controller.x().toggleOnTrue(new UpDownLinear(test));
       //  controller.y().onTrue(new UpDownQuadratic(test));
       
