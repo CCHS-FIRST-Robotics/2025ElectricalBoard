@@ -1,6 +1,5 @@
 package frc.robot;
 
-
 import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -24,7 +23,7 @@ public class RobotContainer {
   
     }
 
-     public void moveToAngle(double angle) {
+    /*public void moveToAngle(double angle) {
       pidController.setSetpoint(angle);
       double output = pidController.calculate(Motor.getPosition().getValue(), 90);
       Motor.set(output);
@@ -33,6 +32,22 @@ public class RobotContainer {
         Motor.set(0);
       }
   }
+  */
+
+  public void moveToAngle(double angle) {
+    pidController.setSetpoint(angle);
+    double currentPosition = Motor.getPosition().getValue();
+    double output = pidController.calculate(currentPosition);
+    
+    output = Math.max(Math.min(output, 1.0), -1.0);
+
+    Motor.set(output);
+
+    if (pidController.atSetpoint()) {
+        Motor.set(0);
+    }
+}
+
 
 
 }
