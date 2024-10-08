@@ -6,6 +6,7 @@ import com.ctre.phoenix6.*;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
+import com.ctre.phoenix6.configs.MotionMagicConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import edu.wpi.first.units.*;
 
@@ -14,6 +15,8 @@ public class MotorIOTalonFX implements MotorIO {
     private final TalonFXConfiguration motorConfig = new TalonFXConfiguration();
     private final Slot0Configs slot0Config = motorConfig.Slot0;
     private final MotionMagicVoltage motorMotionMagicVoltage = new MotionMagicVoltage(0);
+    private final MotionMagicConfigs motionMagicConfig = motorConfig.MotionMagic;
+
 
     private StatusSignal<Double> voltageSignal;
     private StatusSignal<Double> currentSignal;
@@ -37,7 +40,11 @@ public class MotorIOTalonFX implements MotorIO {
 
         slot0Config.kS = 0;
         slot0Config.kV = 0;
-        slot0Config.kA = 0;
+        slot0Config.kA = 0; 
+
+        motionMagicConfig.MotionMagicCruiseVelocity = 90; // max rps of the motor (almost)
+        motionMagicConfig.MotionMagicAcceleration = .5;
+        // motionMagicConfig.MotionMagicJerk = 0;
     }
 
     @Override
