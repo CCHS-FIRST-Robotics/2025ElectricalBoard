@@ -38,7 +38,7 @@ public class RobotContainer {
     pidController.setSetpoint(angle);
     double currentPosition = Motor.getPosition().getValue();
     double output = pidController.calculate(currentPosition);
-    
+  
     output = Math.max(Math.min(output, 1.0), -1.0);
 
     Motor.set(output);
