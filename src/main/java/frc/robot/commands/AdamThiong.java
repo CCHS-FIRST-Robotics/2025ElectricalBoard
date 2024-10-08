@@ -4,25 +4,25 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.motors.GroupOfMotors;
 import frc.robot.Constants;
 
-public class LinearProfile extends Command{
+public class AdamThiong extends Command{
     GroupOfMotors motors;
     int currentIterations = 0;
     int maxVoltage;
-    int maxIterations;
+    double maxIterations;
     double duration;
     double currentVoltage = 0;
-    double changeRate = 0;
+    double change = 0;
 
-    public LinearProfile(GroupOfMotors motors, double duration, int maxVoltage) {
+    public AdamThiong(GroupOfMotors motors, double duration, int maxVoltage) {
         this.motors = motors;
         this.maxVoltage = maxVoltage;
-        this.change = changeRate;
         this.maxIterations = duration / 50;
-        this.duration = maxIterations;
+        this.duration = duration;
     }
     
     @Override
     public void execute() {
+        System.out.println("hi");
 
         // calculate change
         if (currentVoltage == maxVoltage) {
@@ -38,8 +38,7 @@ public class LinearProfile extends Command{
         // Make sure the voltage will not exceed max or go below 0
         if (currentVoltage + change <= maxVoltage && currentVoltage + change >= 0) {
             currentVoltage += change;
-            totalVolts = currentVoltage;
-            motors.setAllMotorVoltage(totalVolts);
+            motors.setAllMotorVoltage(currentVoltage);
         } 
         currentIterations += 1; 
     }
