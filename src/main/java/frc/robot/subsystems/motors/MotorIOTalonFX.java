@@ -13,7 +13,7 @@ import edu.wpi.first.units.*;
 public class MotorIOTalonFX implements MotorIO {
     private TalonFX motor;
     private final TalonFXConfiguration motorConfig = new TalonFXConfiguration();
-    private final Slot0Configs slot0Config = motorConfig.Slot0;
+    private final Slot0Configs PIDF = motorConfig.Slot0;
     private final MotionMagicVoltage motorMotionMagicVoltage = new MotionMagicVoltage(0);
     private final MotionMagicConfigs motionMagicConfig = motorConfig.MotionMagic;
 
@@ -26,7 +26,7 @@ public class MotorIOTalonFX implements MotorIO {
     
     public MotorIOTalonFX(int id){
         motor = new TalonFX(id);
-        motor.getConfigurator().apply(motorConfig);
+        
 
         voltageSignal = motor.getMotorVoltage();
         currentSignal = motor.getStatorCurrent();
@@ -34,17 +34,24 @@ public class MotorIOTalonFX implements MotorIO {
         velocitySignal = motor.getVelocity();
         temperatureSignal = motor.getDeviceTemp();
 
-        slot0Config.kP = 0.1;
-        slot0Config.kD = 0;
-        slot0Config.kI = 0;
+        PIDF.kP = 10;
+        PIDF.kD = 1;
+        PIDF.kI = 1;
 
-        slot0Config.kS = 0;
-        slot0Config.kV = 0;
-        slot0Config.kA = 0; 
+        PIDF.kS = 10;
+        PIDF.kV = 1;
+        PIDF.kA = 0;
 
-        motionMagicConfig.MotionMagicCruiseVelocity = 90; // max rps of the motor (almost)
-        motionMagicConfig.MotionMagicAcceleration = .5;
-        // motionMagicConfig.MotionMagicJerk = 0;
+        motionMagicConfig.MotionMagicCruiseVelocity = 100; // max rps of the motor (almost)
+        motionMagicConfig.MotionMagicAcceleration = 1;
+        motionMagicConfig.MotionMagicJerk = 1;
+
+        StatusCode status = StatusCode.StatusCodeNotInitialized;
+        for (int i = 0; i < 5; ++i) {
+            status = motor.getConfigurator().apply(motorConfig);
+            if (status.isOK())
+                break;
+        }
     }
 
     @Override
@@ -55,8 +62,8 @@ public class MotorIOTalonFX implements MotorIO {
     @Override
     public void setPosition(Measure<Angle> radians){
         motor.setControl(motorMotionMagicVoltage.withPosition(radians.in(Rotations)).withSlot(0));
+        System.out.println(radians.in(Rotations));
     }
-
 
     @Override
     public void updateInputs(MotorIOInputs inputs) {

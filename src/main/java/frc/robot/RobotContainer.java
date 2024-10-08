@@ -26,7 +26,7 @@ public class RobotContainer {
 
     public RobotContainer() {
         motors.addMotor(new Motor(new MotorIOTalonFX(Constants.TALONFX_ID))); // kraken
-        motors.addMotor(new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_1))); // cim
+        motors.addMotor(new Motor(new MotorIOTalonFX(Constants.SPARKMAX_ID))); // arm
 
         configureBindings();
     }
@@ -35,20 +35,20 @@ public class RobotContainer {
         //-----Motors-----//
 
         // joystick controls
-        motors.setDefaultCommand(
-            new ControlWithJoysticks(
-                motors,
-                () -> controller.getLeftX(),
-                () -> controller.getLeftY(),
-                () -> controller.getRightX(),
-                () -> controller.getRightY()
-            )
-        );
+        // motors.setDefaultCommand(
+        //     new ControlWithJoysticks(
+        //         motors,
+        //         () -> controller.getLeftX(),
+        //         () -> controller.getLeftY(),
+        //         () -> controller.getRightX(),
+        //         () -> controller.getRightY()
+        //     )
+        // );
 
         // button controls
         controller.x().onTrue(new LinearProfile(motors, 20, 12, 10));
         controller.y().onTrue(new ExponentialProfile(motors, 20, 12, 10));
-        controller.b().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(Math.PI))));
+        controller.b().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(Math.random() * 2))));
         controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 
         //-----Pneumatics-----//
