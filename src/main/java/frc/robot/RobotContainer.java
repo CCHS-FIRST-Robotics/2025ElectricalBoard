@@ -26,7 +26,7 @@ public class RobotContainer {
 
     public RobotContainer() {
         motors.addMotor(new Motor(new MotorIOTalonFX(Constants.TALONFX_ID))); // kraken
-        motors.addMotor(new Motor(new MotorIOTalonFX(Constants.SPARKMAX_ID))); // arm
+        motors.addMotor(new Motor(new MotorIOSparkMax(Constants.SPARKMAX_ID))); // arm
 
         configureBindings();
     }
