@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import static edu.wpi.first.units.Units.*;
-
 import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.*;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -46,9 +44,9 @@ public class RobotContainer {
         );
 
         // button controls
-        controller.x().onTrue(new LinearProfile(motors, 20, 12, 10));
+        controller.x().onTrue(new AdamThiong(motors, 30, 12));
         controller.y().onTrue(new ExponentialProfile(motors, 20, 12, 10));
-        controller.b().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(Math.PI))));
+        controller.b().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Math.PI)));
         controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 
         //-----Pneumatics-----//

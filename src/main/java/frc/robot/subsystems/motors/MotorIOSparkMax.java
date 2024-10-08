@@ -1,10 +1,7 @@
 package frc.robot.subsystems.motors;
 
-import static edu.wpi.first.units.Units.*;
-
 import com.revrobotics.*;
 import com.revrobotics.CANSparkLowLevel.MotorType;
-import edu.wpi.first.units.*;
 
 public class MotorIOSparkMax implements MotorIO {
     private CANSparkMax motor;
@@ -16,13 +13,13 @@ public class MotorIOSparkMax implements MotorIO {
     }
     
     @Override
-    public void setVoltage(Measure<Voltage> volts) {
-        motor.setVoltage(volts.in(Volts));
+    public void setVoltage(double volts) {
+        motor.setVoltage(volts);
     }
 
     @Override
-    public void setPosition(Measure<Angle> radians){
-        encoder.setPosition(radians.in(Rotations) / (2 * Math.PI));
+    public void setPosition(double radians){
+        encoder.setPosition(radians / (2 * Math.PI));
     }
 
     @Override
