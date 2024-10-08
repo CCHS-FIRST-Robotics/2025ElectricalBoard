@@ -26,7 +26,7 @@ public class RobotContainer {
 
      public void moveToAngle(double angle) {
       pidController.setSetpoint(angle);
-      double output = pidController.calculate(Motor.getPosition().getValue());
+      double output = pidController.calculate(Motor.getPosition().getValue(), 90);
       Motor.set(output);
 
       if (pidController.atSetpoint()) {
