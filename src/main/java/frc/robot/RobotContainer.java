@@ -13,7 +13,7 @@ import frc.robot.subsystems.pneumatics.*;
 
 public class RobotContainer {
     CommandXboxController controller = new CommandXboxController(Constants.CONTROLLER_PORT);
-
+  //
     Trigger irSensor = new Trigger(new DigitalInput(Constants.IR_SENSOR_PORT)::get);
    //Trigger joystickTrigger = new Trigger(() -> Math.abs(controller.getLeftX()) > 0.2);
 
