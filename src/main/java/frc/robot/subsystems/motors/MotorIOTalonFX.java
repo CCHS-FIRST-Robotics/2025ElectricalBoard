@@ -17,7 +17,6 @@ public class MotorIOTalonFX implements MotorIO {
     private final MotionMagicVoltage motorMotionMagicVoltage = new MotionMagicVoltage(0);
     private final MotionMagicConfigs motionMagicConfig = motorConfig.MotionMagic;
 
-
     private StatusSignal<Double> voltageSignal;
     private StatusSignal<Double> currentSignal;
     private StatusSignal<Double> positionSignal;
@@ -26,7 +25,6 @@ public class MotorIOTalonFX implements MotorIO {
     
     public MotorIOTalonFX(int id){
         motor = new TalonFX(id);
-        
 
         voltageSignal = motor.getMotorVoltage();
         currentSignal = motor.getStatorCurrent();
@@ -46,6 +44,7 @@ public class MotorIOTalonFX implements MotorIO {
         motionMagicConfig.MotionMagicAcceleration = 1;
         motionMagicConfig.MotionMagicJerk = 1;
 
+        // ! look at this
         StatusCode status = StatusCode.StatusCodeNotInitialized;
         for (int i = 0; i < 5; ++i) {
             status = motor.getConfigurator().apply(motorConfig);
@@ -61,6 +60,7 @@ public class MotorIOTalonFX implements MotorIO {
 
     @Override
     public void setPosition(Measure<Angle> position){
+        // ! check how this functions
         motor.setControl(motorMotionMagicVoltage.withPosition(position.in(Rotations)).withSlot(0));
         System.out.println(position.in(Rotations));
     }

@@ -9,15 +9,22 @@ import edu.wpi.first.units.*;
 public class ArmIOSparkMax implements ArmIO {
     private CANSparkMax motor;
     private RelativeEncoder encoder;
+    private final SparkPIDController PIDF;
 
     public ArmIOSparkMax(int id){
         motor = new CANSparkMax(id, MotorType.kBrushed);
         encoder = motor.getEncoder(); 
+        PIDF = motor.getPIDController();
+
+        PIDF.setP(8, 0);
+        PIDF.setD(0, 0);
+        PIDF.setI(0, 0);
+        PIDF.setFF(0, 0);
     }
 
     @Override
     public void setPosition(Measure<Angle> position){
-        turnSparkMaxPIDF.setReference(
+        PIDF.setReference(
             position.in(Rotations),
             CANSparkMax.ControlType.kPosition,
             0

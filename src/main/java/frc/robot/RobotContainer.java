@@ -47,8 +47,8 @@ public class RobotContainer {
         // );
 
         // button controls
-        controller.x().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(Math.random() * 2))));
-        // controller.y().onTrue();
+        controller.x().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(Math.random() * 2 * Math.PI))));
+        controller.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(Math.random() * 2 * Math.PI))));
         controller.b().onTrue(new ExponentialProfile(motors, 20, 12, 10)); // ! test advantagescope with this
         controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 

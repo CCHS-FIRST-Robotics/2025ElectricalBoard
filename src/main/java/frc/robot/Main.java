@@ -9,6 +9,10 @@ import edu.wpi.first.wpilibj.RobotBase;
 /**
  * to do: 
  * 
+ * position control with TalonFX
+ * arm position control
+ * test advantagescope
+ * test pneumatics
  */
 
 public final class Main {
