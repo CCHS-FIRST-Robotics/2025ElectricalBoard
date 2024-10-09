@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.commands.*;
 import frc.robot.subsystems.motors.*;
+import frc.robot.subsystems.arm.*;
 import frc.robot.subsystems.pneumatics.*;
 
 public class RobotContainer {
@@ -21,12 +22,12 @@ public class RobotContainer {
     Trigger irSensor = new Trigger(new DigitalInput(Constants.IR_SENSOR_PORT)::get);
 
     GroupOfMotors motors = new GroupOfMotors();
+    Arm arm = new Arm(new ArmIOSparkMax(Constants.SPARKMAX_ID));
     
     Pneumatics pneumatics = new Pneumatics(Constants.PISTON_ID_1, Constants.PISTON_ID_2);
 
     public RobotContainer() {
-        motors.addMotor(new Motor(new MotorIOTalonFX(Constants.TALONFX_ID))); // kraken
-        motors.addMotor(new Motor(new MotorIOSparkMax(Constants.SPARKMAX_ID))); // arm
+        motors.addMotor(new Motor(new MotorIOTalonFX(Constants.TALONFX_ID), 0)); // kraken
 
         configureBindings();
     }
@@ -46,9 +47,9 @@ public class RobotContainer {
         // );
 
         // button controls
-        controller.x().onTrue(new LinearProfile(motors, 20, 12, 10));
-        controller.y().onTrue(new ExponentialProfile(motors, 20, 12, 10));
-        controller.b().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(Math.random() * 2))));
+        controller.x().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(Math.random() * 2))));
+        // controller.y().onTrue();
+        controller.b().onTrue(new ExponentialProfile(motors, 20, 12, 10)); // ! test advantagescope with this
         controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 
         //-----Pneumatics-----//

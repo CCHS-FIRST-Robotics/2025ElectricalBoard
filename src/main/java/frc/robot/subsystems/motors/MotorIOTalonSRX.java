@@ -19,8 +19,8 @@ public class MotorIOTalonSRX implements MotorIO {
     }
 
     @Override
-    public void setPosition(Measure<Angle> radians){
-        motor.set(TalonSRXControlMode.Position, motor.getSelectedSensorPosition() + radians.in(Rotations)); // ! not in radians
+    public void setPosition(Measure<Angle> position){
+        motor.set(TalonSRXControlMode.Position, motor.getSelectedSensorPosition() + position.in(Rotations)); // ! not in radians
     }
 
     @Override

@@ -1,4 +1,4 @@
-package frc.robot.subsystems.motors;
+package frc.robot.subsystems.arm;
 
 import static edu.wpi.first.units.Units.*;
 
@@ -6,27 +6,26 @@ import com.revrobotics.*;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.units.*;
 
-public class MotorIOSparkMax implements MotorIO {
+public class ArmIOSparkMax implements ArmIO {
     private CANSparkMax motor;
     private RelativeEncoder encoder;
 
-    public MotorIOSparkMax(int id){
-        motor = new CANSparkMax(id, MotorType.kBrushless);
+    public ArmIOSparkMax(int id){
+        motor = new CANSparkMax(id, MotorType.kBrushed);
         encoder = motor.getEncoder(); 
     }
 
     @Override
-    public void setVoltage(Measure<Voltage> volts) {
-        motor.setVoltage(volts.in(Volts));
-    }
-
-    @Override
     public void setPosition(Measure<Angle> position){
-        encoder.setPosition(position.in(Rotations) / (2 * Math.PI));
+        turnSparkMaxPIDF.setReference(
+            position.in(Rotations),
+            CANSparkMax.ControlType.kPosition,
+            0
+        );
     }
 
     @Override
-    public void updateInputs(MotorIOInputs inputs) {
+    public void updateInputs(ArmIOInputs inputs) {
         inputs.motorCurrent = motor.getOutputCurrent();
         inputs.motorVoltage = motor.getBusVoltage();
         inputs.motorPosition = encoder.getPosition();

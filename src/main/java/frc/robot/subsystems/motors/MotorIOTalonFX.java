@@ -60,9 +60,9 @@ public class MotorIOTalonFX implements MotorIO {
     }
 
     @Override
-    public void setPosition(Measure<Angle> radians){
-        motor.setControl(motorMotionMagicVoltage.withPosition(radians.in(Rotations)).withSlot(0));
-        System.out.println(radians.in(Rotations));
+    public void setPosition(Measure<Angle> position){
+        motor.setControl(motorMotionMagicVoltage.withPosition(position.in(Rotations)).withSlot(0));
+        System.out.println(position.in(Rotations));
     }
 
     @Override
