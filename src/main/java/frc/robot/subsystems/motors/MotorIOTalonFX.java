@@ -32,25 +32,27 @@ public class MotorIOTalonFX implements MotorIO {
         velocitySignal = motor.getVelocity();
         temperatureSignal = motor.getDeviceTemp();
 
+        // ! filler values
         PIDF.kP = 10;
-        PIDF.kD = 1;
-        PIDF.kI = 1;
-
+        PIDF.kD = 0;
+        PIDF.kI = 0;
         PIDF.kS = 10;
         PIDF.kV = 1;
         PIDF.kA = 0;
 
-        motionMagicConfig.MotionMagicCruiseVelocity = 100; // max rps of the motor (almost)
+        motionMagicConfig.MotionMagicCruiseVelocity = 100; // motor max rps
         motionMagicConfig.MotionMagicAcceleration = 1;
-        motionMagicConfig.MotionMagicJerk = 1;
+        motionMagicConfig.MotionMagicJerk = 0;
+
+        motor.getConfigurator().apply(motorConfig);
 
         // ! look at this
-        StatusCode status = StatusCode.StatusCodeNotInitialized;
-        for (int i = 0; i < 5; ++i) {
-            status = motor.getConfigurator().apply(motorConfig);
-            if (status.isOK())
-                break;
-        }
+        // StatusCode status = StatusCode.StatusCodeNotInitialized;
+        // for (int i = 0; i < 5; ++i) {
+        //     status = motor.getConfigurator().apply(motorConfig);
+        //     if (status.isOK())
+        //         break;
+        // }
     }
 
     @Override
@@ -60,7 +62,6 @@ public class MotorIOTalonFX implements MotorIO {
 
     @Override
     public void setPosition(Measure<Angle> position){
-        // ! check how this functions
         motor.setControl(motorMotionMagicVoltage.withPosition(position.in(Rotations)).withSlot(0));
         System.out.println(position.in(Rotations));
     }

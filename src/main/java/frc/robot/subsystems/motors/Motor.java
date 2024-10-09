@@ -23,6 +23,6 @@ public class Motor {
 
     public void updateInputs(){
         io.updateInputs(inputs);
-        Logger.processInputs("motor" + Integer.toString(index), inputs);
+        Logger.processInputs("motor " + Integer.toString(index), inputs);
     }
 }
