@@ -22,8 +22,7 @@ public class RobotContainer {
     Trigger irSensor = new Trigger(new DigitalInput(Constants.IR_SENSOR_PORT)::get);
 
     GroupOfMotors motors = new GroupOfMotors();
-    // Arm arm = new Arm(new ArmIOSparkMax(Constants.SPARKMAX_ID));
-    
+    Arm arm = new Arm(new ArmIOSparkMax(Constants.SPARKMAX_ID));
     Pneumatics pneumatics = new Pneumatics(Constants.PISTON_ID_1, Constants.PISTON_ID_2);
 
     public RobotContainer() {
@@ -48,7 +47,7 @@ public class RobotContainer {
 
         // button controls
         controller.x().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(Math.random() * 2 * Math.PI))));
-        // controller.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(Math.random() * 2 * Math.PI))));
+        controller.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(Math.random() * 2 * Math.PI))));
         controller.b().onTrue(new ExponentialProfile(motors, 20, 12, 10));
         controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 

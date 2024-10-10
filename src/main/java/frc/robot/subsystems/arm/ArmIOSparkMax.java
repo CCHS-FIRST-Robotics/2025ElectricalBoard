@@ -14,10 +14,9 @@ public class ArmIOSparkMax implements ArmIO {
 
     public ArmIOSparkMax(int id){
         motor = new CANSparkMax(id, MotorType.kBrushed);
-        encoder = motor.getEncoder(); 
+        encoder = motor.getEncoder(SparkRelativeEncoder.Type.kQuadrature, 4096); 
         PIDF = motor.getPIDController();
 
-        // ! filler values
         PIDF.setP(8, 0);
         PIDF.setD(0, 0);
         PIDF.setI(0, 0);
@@ -47,6 +46,7 @@ public class ArmIOSparkMax implements ArmIO {
             CANSparkMax.ControlType.kPosition,
             0
         );
+        System.out.println(position.in(Rotations));
     }
 
     @Override
