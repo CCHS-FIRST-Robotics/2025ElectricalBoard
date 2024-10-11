@@ -3,7 +3,7 @@ package frc.robot.subsystems.pneumatics;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Pneumatics extends SubsystemBase{
-    private SolenoidIOPCM piston1, piston2;
+    private final SolenoidIOPCM piston1, piston2;
 
     public Pneumatics(int pistonId1, int pistonId2){
         piston1 = new SolenoidIOPCM(pistonId1);

@@ -12,29 +12,34 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.commands.*;
 import frc.robot.subsystems.motors.*;
 import frc.robot.subsystems.arm.*;
-import frc.robot.subsystems.pneumatics.*;
+// import frc.robot.subsystems.pneumatics.*;
 
 public class RobotContainer {
-    CommandXboxController controller = new CommandXboxController(Constants.CONTROLLER_PORT);
+    private final CommandXboxController controller = new CommandXboxController(Constants.CONTROLLER_PORT);
 
-    Trigger nintendo1 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_1)::get);
-    Trigger nintendo2 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_2)::get);
-    Trigger irSensor = new Trigger(new DigitalInput(Constants.IR_SENSOR_PORT)::get);
+    private final GroupOfMotors motors;
+    private final Arm arm;
+    // private final Pneumatics pneumatics;
 
-    GroupOfMotors motors = new GroupOfMotors();
-    Arm arm = new Arm(new ArmIOSparkMax(Constants.SPARKMAX_ID));
-    Pneumatics pneumatics = new Pneumatics(Constants.PISTON_ID_1, Constants.PISTON_ID_2);
+    private final Trigger nintendo1 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_1)::get);
+    private final Trigger nintendo2 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_2)::get);
+    private final Trigger irSensor = new Trigger(new DigitalInput(Constants.IR_SENSOR_PORT)::get);
 
     public RobotContainer() {
+        motors = new GroupOfMotors();
+        arm = new Arm(new ArmIOSparkMax(Constants.SPARKMAX_ID));
+        // pneumatics = new Pneumatics(Constants.PISTON_ID_1, Constants.PISTON_ID_2);
+
         motors.addMotor(new Motor(new MotorIOTalonFX(Constants.TALONFX_ID), 0)); // kraken
+        // motors.addMotor(new Motor(new MotorIOSparkMax(Constants.SPARKMAX_ID), 1)); // neo
+        // motors.addMotor(new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_1), 2)); // cim1
+        // motors.addMotor(new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_2), 3)); // cim2
 
         configureBindings();
     }
 
     private void configureBindings() {
         //-----Motors-----//
-
-        // joystick controls
         // motors.setDefaultCommand(
         //     new ControlWithJoysticks(
         //         motors,
@@ -45,7 +50,6 @@ public class RobotContainer {
         //     )
         // );
 
-        // button controls
         controller.x().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(Math.random() * 2 * Math.PI))));
         controller.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(Math.random() * 2 * Math.PI))));
         controller.b().onTrue(new ExponentialProfile(motors, 20, 12, 10));

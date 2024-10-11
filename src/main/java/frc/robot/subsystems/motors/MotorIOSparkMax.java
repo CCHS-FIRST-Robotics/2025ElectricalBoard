@@ -7,8 +7,8 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.units.*;
 
 public class MotorIOSparkMax implements MotorIO {
-    private CANSparkMax motor;
-    private RelativeEncoder encoder;
+    private final CANSparkMax motor;
+    private final RelativeEncoder encoder;
 
     public MotorIOSparkMax(int id){
         motor = new CANSparkMax(id, MotorType.kBrushless);

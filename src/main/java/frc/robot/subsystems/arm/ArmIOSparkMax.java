@@ -8,9 +8,11 @@ import com.revrobotics.CANSparkLowLevel.PeriodicFrame;
 import com.revrobotics.CANSparkBase.IdleMode;
 import edu.wpi.first.units.*;
 
+// ! motion profiling
+
 public class ArmIOSparkMax implements ArmIO {
-    private CANSparkMax motor;
-    private RelativeEncoder encoder;
+    private final CANSparkMax motor;
+    private final RelativeEncoder encoder;
     private final SparkPIDController PIDF;
 
     public ArmIOSparkMax(int id){
@@ -33,10 +35,9 @@ public class ArmIOSparkMax implements ArmIO {
             20
         );
         motor.setSmartCurrentLimit(30);
-        motor.enableVoltageCompensation(12.0);
+        motor.enableVoltageCompensation(12);
         motor.setIdleMode(IdleMode.kBrake);
-
-        encoder.setPosition(0.0); // ! hm
+        encoder.setPosition(0); // ! hm
         encoder.setMeasurementPeriod(20);
         encoder.setAverageDepth(2);
         encoder.setPositionConversionFactor(1);

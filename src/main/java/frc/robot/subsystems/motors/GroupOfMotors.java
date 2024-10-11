@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import edu.wpi.first.units.*;
 
 public class GroupOfMotors extends SubsystemBase{
-    private ArrayList<Motor> motors;
+    private final ArrayList<Motor> motors;
     private boolean allMotorsOn = false;
 
     public GroupOfMotors(){

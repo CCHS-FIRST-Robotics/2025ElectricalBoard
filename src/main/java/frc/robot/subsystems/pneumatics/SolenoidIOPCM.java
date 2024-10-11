@@ -3,7 +3,7 @@ package frc.robot.subsystems.pneumatics;
 import edu.wpi.first.wpilibj.*;
 
 public class SolenoidIOPCM implements SolenoidIO{
-    private Solenoid solenoid;
+    private final Solenoid solenoid;
 
     public SolenoidIOPCM(int id){
         solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, id);

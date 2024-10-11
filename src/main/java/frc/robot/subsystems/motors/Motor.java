@@ -4,8 +4,8 @@ import org.littletonrobotics.junction.Logger;
 import edu.wpi.first.units.*;
 
 public class Motor {
-    private MotorIO io;
-    private MotorIOInputsAutoLogged inputs = new MotorIOInputsAutoLogged();
+    private final MotorIO io;
+    private final MotorIOInputsAutoLogged inputs = new MotorIOInputsAutoLogged();
     private int index;
 
     public Motor(MotorIO io, int index) {

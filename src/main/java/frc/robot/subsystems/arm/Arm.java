@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.units.*;
 
 public class Arm extends SubsystemBase{
-    private ArmIO io;
-    private ArmIOInputsAutoLogged inputs = new ArmIOInputsAutoLogged();
+    private final ArmIO io;
+    private final ArmIOInputsAutoLogged inputs = new ArmIOInputsAutoLogged();
 
     public Arm(ArmIO io) {
         this.io = io;

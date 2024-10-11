@@ -11,7 +11,7 @@ import com.ctre.phoenix6.configs.Slot0Configs;
 import edu.wpi.first.units.*;
 
 public class MotorIOTalonFX implements MotorIO {
-    private TalonFX motor;
+    private final TalonFX motor;
     private final TalonFXConfiguration motorConfig = new TalonFXConfiguration();
     private final Slot0Configs PIDF = motorConfig.Slot0;
     private final MotionMagicVoltage motorMotionMagicVoltage = new MotionMagicVoltage(0);
