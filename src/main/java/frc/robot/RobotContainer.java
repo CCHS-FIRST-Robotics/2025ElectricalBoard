@@ -9,37 +9,32 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
     private final CommandXboxController transmitter = new CommandXboxController(Constants.Controller_PORT);
-    private final TalonFX motor= new TalonFX(0);
+    private final TalonFX motor = new TalonFX(1);
     private final PIDController pidController = new PIDController(0.5, 0.0, 0.1);
-
-    private final double targetAngle = 90;
+    private final double targetAngle = Math.PI / 2;
 
     public RobotContainer() {
-        pidController.setSetpoint(targetAngle); //90 deg (pi/2 rad)
-        pidController.setTolerance(5, 10); //position tolerance, velocity tolerance
+        pidController.setTolerance(5, 10);
         configureBindings();
     }
 
     private void configureBindings() {
-        Trigger Button = transmitter.b();
-        Button.onTrue(new InstantCommand(() -> moveToAngle(targetAngle)));
-      
+        Trigger buttonB = transmitter.b();
+        buttonB.onTrue(new InstantCommand(() -> moveToAngle(targetAngle)));
     }
 
     public void moveToAngle(double angle) {
-      pidController.setSetpoint(angle);
-      double currentPosition = motor.getPosition().getValue();
-      double output = pidController.calculate(currentPosition);
+        pidController.setSetpoint(angle);
+        double currentPosition = motor.getPosition().getValue();
+        double output = pidController.calculate(currentPosition);
 
-      //constrain the output to -1.0 to 1.0 as the controller joystick ranges from -1 to 1 and 1 = max throttle signal -1 = reverse direction max throttle?
-      MathUtil.clamp(pidController.calculate(output, targetAngle), -1, 1);
+        output = MathUtil.clamp(output, -1, 1);
+        motor.set(output);
+    }
 
-      motor.set(output);
-
-      if (pidController.atSetpoint()) {
-        motor.set(0);
-      }
-  }
-
+    public void periodic() {
+        if (pidController.atSetpoint()) {
+            motor.set(0);
+        }
+    }
 }
-
