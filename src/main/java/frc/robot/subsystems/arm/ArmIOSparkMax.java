@@ -4,6 +4,7 @@ import static edu.wpi.first.units.Units.*;
 
 import com.revrobotics.*;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.CANSparkLowLevel.PeriodicFrame;
 import com.revrobotics.CANSparkBase.IdleMode;
 import edu.wpi.first.units.*;
 
@@ -14,26 +15,31 @@ public class ArmIOSparkMax implements ArmIO {
 
     public ArmIOSparkMax(int id){
         motor = new CANSparkMax(id, MotorType.kBrushed);
-        encoder = motor.getEncoder(SparkRelativeEncoder.Type.kQuadrature, 4096); 
+        encoder = motor.getEncoder(SparkRelativeEncoder.Type.kQuadrature, 4096); // ! MAYBE has to be after setting can timeout
         PIDF = motor.getPIDController();
 
         PIDF.setP(8, 0);
         PIDF.setD(0, 0);
         PIDF.setI(0, 0);
         PIDF.setFF(0, 0);
+        PIDF.setPositionPIDWrappingEnabled(true);
+        PIDF.setPositionPIDWrappingMinInput(0);
+        PIDF.setPositionPIDWrappingMaxInput(1);
         PIDF.setFeedbackDevice(encoder);
 
         motor.setCANTimeout(500);
-        // motor.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 20); // report absolute encoder measurements at 20ms
-        // motor.setSmartCurrentLimit(30);
-        // motor.enableVoltageCompensation(12.0);
+        motor.setPeriodicFramePeriod(
+            PeriodicFrame.kStatus5,  // returns encoder position
+            20
+        );
+        motor.setSmartCurrentLimit(30);
+        motor.enableVoltageCompensation(12.0);
         motor.setIdleMode(IdleMode.kBrake);
 
-        encoder.setPosition(0.0);
+        encoder.setPosition(0.0); // ! hm
         encoder.setMeasurementPeriod(20);
         encoder.setAverageDepth(2);
         encoder.setPositionConversionFactor(1);
-
         motor.setCANTimeout(0);
 
         System.out.println(motor.burnFlash() == REVLibError.kOk);

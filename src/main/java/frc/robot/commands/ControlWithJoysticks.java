@@ -14,7 +14,6 @@ public class ControlWithJoysticks extends Command{
     Supplier<Double> rightXSupplier;
     Supplier<Double> rightYSupplier;
 
-    
     public ControlWithJoysticks(
         GroupOfMotors motors,
         Supplier<Double> leftXSupplier,
