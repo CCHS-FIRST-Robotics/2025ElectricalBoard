@@ -9,7 +9,7 @@ public class Robot extends LoggedRobot {
     @Override
     public void robotInit() {
         robotContainer = new RobotContainer();
-        Logger.recordMetadata("project", "Differential Drive");
+        Logger.recordMetadata("project", "Encoders");
         Logger.start();
     }
 
