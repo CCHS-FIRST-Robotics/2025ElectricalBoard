@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.RobotBase;
  * to do: 
  * 
  * arm position control
+ * arm motionmagic
  * test pneumatics
  */
 

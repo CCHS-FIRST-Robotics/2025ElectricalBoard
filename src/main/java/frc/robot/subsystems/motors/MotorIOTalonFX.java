@@ -34,8 +34,6 @@ public class MotorIOTalonFX implements MotorIO {
         velocitySignal = motor.getVelocity();
         temperatureSignal = motor.getDeviceTemp();
 
-        // ! somehow set the starting position as the 0
-
         PIDF.kP = 20;
         PIDF.kD = 0;
         PIDF.kI = 0;
@@ -43,9 +41,10 @@ public class MotorIOTalonFX implements MotorIO {
         PIDF.kV = 0;
         PIDF.kA = 0;
 
-        motionMagicConfig.MotionMagicCruiseVelocity = 80; // motor max rps
-        motionMagicConfig.MotionMagicAcceleration = 10;
-        motionMagicConfig.MotionMagicJerk = 0;
+        // ! play around with these and look at advantagescope
+        motionMagicConfig.MotionMagicCruiseVelocity = 100; // motor max rps
+        motionMagicConfig.MotionMagicAcceleration = 0.5;
+        motionMagicConfig.MotionMagicJerk = 1;
 
         motor.getConfigurator().apply(motorConfig);
     }
@@ -62,7 +61,8 @@ public class MotorIOTalonFX implements MotorIO {
     }
 
     public void iteratePosition(){
-        motor.setControl(motorMotionMagicVoltage.withPosition(angle.in(Rotations)).withSlot(0));
+        // ! test this
+        motor.setControl(motorMotionMagicVoltage.withPosition(positionSignal.getValue() + angle.in(Rotations)).withSlot(0));
         System.out.println(angle.in(Rotations));
 
         angle = Radians.of(angle.in(Radians) + Math.PI / 2);
