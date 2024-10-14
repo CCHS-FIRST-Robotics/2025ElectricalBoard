@@ -15,7 +15,8 @@ import frc.robot.subsystems.arm.*;
 // import frc.robot.subsystems.pneumatics.*;
 
 public class RobotContainer {
-    private final CommandXboxController controller = new CommandXboxController(Constants.CONTROLLER_PORT);
+    private final CommandXboxController controller1 = new CommandXboxController(Constants.CONTROLLER_PORT_1);
+    private final CommandXboxController controller2 = new CommandXboxController(Constants.CONTROLLER_PORT_2);
 
     private final GroupOfMotors motors;
     private final Arm arm;
@@ -50,10 +51,17 @@ public class RobotContainer {
         //     )
         // );
 
-        controller.x().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(Math.random() * 2 * Math.PI))));
-        controller.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(Math.random() * 2 * Math.PI))));
-        controller.b().onTrue(new ExponentialProfile(motors, 20, 12, 10));
-        controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
+        // talonFX controls
+        controller1.x().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(0)))); // zero the motor
+        controller1.y().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(1)))); // iterate
+        controller1.b().onTrue(new ExponentialProfile(motors, 20, 12, 10)); // ! test all signals with advantagescope
+        controller1.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
+        
+        // arm controls
+        controller2.x().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(0)))); // zero the motor
+        controller2.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(1)))); // iterate
+        // controller2.b().onTrue(new ExponentialProfile(motors, 20, 12, 10));
+        controller2.a().onTrue(new InstantCommand(() -> arm.toggleMotor()));
 
         //-----Pneumatics-----//
         // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));

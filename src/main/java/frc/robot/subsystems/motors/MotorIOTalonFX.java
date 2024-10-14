@@ -56,13 +56,21 @@ public class MotorIOTalonFX implements MotorIO {
 
     @Override
     public void setPosition(Measure<Angle> position){
-        iteratePosition(); // ! temp
-        // motor.setControl(motorMotionMagicVoltage.withPosition(position.in(Rotations)).withSlot(0));
+        // ! everything in here is temp
+        if(position.in(Radians) == 0){
+            motor.setControl(motorMotionMagicVoltage.withPosition(position.in(Rotations)).withSlot(0));
+        }else{
+            iteratePosition();
+        }
     }
 
     public void iteratePosition(){
-        // ! test this
-        motor.setControl(motorMotionMagicVoltage.withPosition(positionSignal.getValue() + angle.in(Rotations)).withSlot(0));
+        // ! test with adding current position
+        motor.setControl(motorMotionMagicVoltage.withPosition(angle.in(Rotations)).withSlot(0));
+        // positionSignal.refresh() // ! keep this in mind
+        // motor.setControl(motorMotionMagicVoltage.withPosition(positionSignal.getValue() + angle.in(Rotations)).withSlot(0));
+        // ! also test the position graph in advantagescope without PID
+        // motor.setControl(motorMotionMagicVoltage.withPosition(angle.in(Rotations)));
         System.out.println(angle.in(Rotations));
 
         angle = Radians.of(angle.in(Radians) + Math.PI / 2);

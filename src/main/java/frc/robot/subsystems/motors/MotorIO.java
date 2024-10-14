@@ -13,12 +13,9 @@ public interface MotorIO {
         public double motorTemperature;
     }
 
-    public default void setVoltage(Measure<Voltage> volts) {
-    }
+    public default void setVoltage(Measure<Voltage> volts) {}
 
-    public default void setPosition(Measure<Angle> position){
-    }
+    public default void setPosition(Measure<Angle> position){}
 
-    public default void updateInputs(MotorIOInputs inputs) {
-    }
+    public default void updateInputs(MotorIOInputs inputs) {}
 }

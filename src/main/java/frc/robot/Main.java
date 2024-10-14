@@ -9,8 +9,12 @@ import edu.wpi.first.wpilibj.RobotBase;
 /**
  * to do: 
  * 
+ * test talonfx voltage signal
+ * test talonfx getting position and then iterating vs not getting position
+ * // ! test the differences between with and without pid
+ * 
  * arm position control
- * arm motionmagic
+ * arm motion profiling
  * test pneumatics
  */
 

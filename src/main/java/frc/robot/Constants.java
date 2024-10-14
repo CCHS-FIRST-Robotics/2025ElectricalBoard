@@ -8,7 +8,8 @@ public final class Constants {
     public static final double PERIOD = 0.02;
     public static final double ANALOG_DEADZONE = 0.3;
 
-    public static final int CONTROLLER_PORT = 0;
+    public static final int CONTROLLER_PORT_1 = 0;
+    public static final int CONTROLLER_PORT_2 = 1;
 
     public static final int TALONFX_ID = 0;
     public static final int SPARKMAX_ID = 1;
