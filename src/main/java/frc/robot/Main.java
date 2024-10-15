@@ -10,18 +10,8 @@ import edu.wpi.first.wpilibj.RobotBase;
  * to do: 
  * 
  * big items for tomorrow: 
- * test all advantagescope logging
- * 
- * test talonfx: 
- *  - zeroing and regular iteration
- *  - iteration adding on the current position: 
- *    * with and without refreshing statussignal
- *  - look at the difference in advantagescope: 
- *    * without PID and just with motion profiling (may not even work)
- *    * with different values for motionmagic
  * 
  * test arm: 
- *  - setting voltage / toggling
  *  - zeroing and regular iteration
  *  - iteration adding on the current position
  * 

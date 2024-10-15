@@ -52,15 +52,15 @@ public class RobotContainer {
         // );
 
         // talonFX controls
-        controller1.x().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(0)))); // zero the motor
-        controller1.y().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(1)))); // iterate
-        controller1.b().onTrue(new ExponentialProfile(motors, 20, 12, 10)); // ! test all signals with advantagescope
+        controller1.x().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(0))));
+        controller1.y().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(1))));
+        controller1.b().onTrue(new ExponentialProfile(motors, 20, 12, 10));
         controller1.a().onTrue(new InstantCommand(() -> motors.toggleMotors())); // test voltage
         
         // arm controls
-        controller2.x().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(0)))); // zero the motor
-        controller2.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(1)))); // iterate
-        controller2.a().onTrue(new InstantCommand(() -> arm.toggleMotor())); // test voltage
+        controller2.x().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(0))));
+        controller2.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(1))));
+        controller2.a().onTrue(new InstantCommand(() -> arm.toggleMotor()));
 
         //-----Pneumatics-----//
         // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));
