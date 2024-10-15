@@ -15,7 +15,7 @@ public class RobotContainer {
     Measure<Angle> targetAngle = Radians.of(Math.PI / 2); //pi/2 rad = 90 deg
 
     public RobotContainer() {
-        pidController.setTolerance(5, 10);
+        //pidController.setTolerance(5, 10);
         configureBindings();
     }
 
@@ -32,7 +32,7 @@ public class RobotContainer {
         //output = MathUtil.clamp(output, -1, 1);
         while (!pidController.atSetpoint()) {
             motor.set(pidController.calculate(currentPosition/(2 * Math.PI), angle));
-        }
+        } 
 
     }
        
