@@ -4,10 +4,8 @@ import static edu.wpi.first.units.Units.*;
 
 import com.ctre.phoenix6.*;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.configs.*;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
-import com.ctre.phoenix6.configs.MotionMagicConfigs;
-import com.ctre.phoenix6.configs.Slot0Configs;
 import edu.wpi.first.units.*;
 
 public class MotorIOTalonFX implements MotorIO {
@@ -41,7 +39,6 @@ public class MotorIOTalonFX implements MotorIO {
         PIDF.kV = 0;
         PIDF.kA = 0;
 
-        // ! play around with these and look at advantagescope
         motionMagicConfig.MotionMagicCruiseVelocity = 100; // motor max rps
         motionMagicConfig.MotionMagicAcceleration = 0.5;
         motionMagicConfig.MotionMagicJerk = 1;
@@ -58,6 +55,7 @@ public class MotorIOTalonFX implements MotorIO {
     public void setPosition(Measure<Angle> position){
         if(position.in(Radians) == 0){
             motor.setControl(motorMotionMagicVoltage.withPosition(position.in(Rotations)).withSlot(0));
+            System.out.println(position.in(Rotations));
         }else{
             iteratePosition();
         }
@@ -65,11 +63,13 @@ public class MotorIOTalonFX implements MotorIO {
 
     public void iteratePosition(){
         motor.setControl(motorMotionMagicVoltage.withPosition(angle.in(Rotations)).withSlot(0));
+
         // positionSignal.refresh()
         // motor.setControl(motorMotionMagicVoltage.withPosition(positionSignal.getValue() + 0.25).withSlot(0));
-        // motor.setControl(motorMotionMagicVoltage.withPosition(angle.in(Rotations)));
-        System.out.println(angle.in(Rotations));
 
+        // motor.setControl(motorMotionMagicVoltage.withPosition(angle.in(Rotations)));
+        
+        System.out.println(angle.in(Rotations));
         angle = Radians.of(angle.in(Radians) + Math.PI / 2);
     }
 

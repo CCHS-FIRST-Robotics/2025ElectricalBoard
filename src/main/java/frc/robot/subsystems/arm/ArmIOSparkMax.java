@@ -20,7 +20,7 @@ public class ArmIOSparkMax implements ArmIO {
         encoder = motor.getEncoder(SparkRelativeEncoder.Type.kQuadrature, 4096); // ! this line might have to be after setting can timeout
         PIDF = motor.getPIDController();
 
-        PIDF.setP(8, 0);
+        PIDF.setP(10, 0); // ! could be too low
         PIDF.setD(0, 0);
         PIDF.setI(0, 0);
         PIDF.setFF(0, 0);
@@ -70,13 +70,14 @@ public class ArmIOSparkMax implements ArmIO {
             CANSparkMax.ControlType.kPosition,
             0
         );
+        
         // PIDF.setReference(
         //     encoder.getPosition() + 0.25,
         //     CANSparkMax.ControlType.kPosition,
         //     0
         // );
-        System.out.println(angle.in(Rotations));
 
+        System.out.println(angle.in(Rotations));
         angle = Radians.of(angle.in(Radians) + Math.PI / 2);
     }
 

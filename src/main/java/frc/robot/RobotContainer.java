@@ -60,7 +60,6 @@ public class RobotContainer {
         // arm controls
         controller2.x().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(0)))); // zero the motor
         controller2.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(1)))); // iterate
-        // controller2.b().onTrue(new ExponentialProfile(motors, 20, 12, 10));
         controller2.a().onTrue(new InstantCommand(() -> arm.toggleMotor()));
 
         //-----Pneumatics-----//

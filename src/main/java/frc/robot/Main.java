@@ -26,8 +26,8 @@ import edu.wpi.first.wpilibj.RobotBase;
  *  - iteration adding on the current position
  * 
  * 
- * tune PIDs
  * arm motion profiling
+ * tune PIDs
  * test pneumatics
  */
 

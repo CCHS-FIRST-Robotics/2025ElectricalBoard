@@ -1,6 +1,6 @@
 package frc.robot.subsystems.arm;
 
-import static edu.wpi.first.units.Units.*; // ! TEMP
+import static edu.wpi.first.units.Units.*;
 
 import org.littletonrobotics.junction.Logger;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -21,13 +21,16 @@ public class Arm extends SubsystemBase{
         Logger.processInputs("arm", inputs);
     }
 
-    // ! TEMP
-    public void toggleMotor(){
-        io.setVoltage(motorOn ? Volts.of(0) : Volts.of(8));
-        motorOn = !motorOn;
+    public void setVoltage(Measure<Voltage> volts){
+        io.setVoltage(volts);
     }
 
     public void setPosition(Measure<Angle> position) {
         io.setPosition(position);
+    }
+
+    public void toggleMotor(){
+        setVoltage(motorOn ? Volts.of(0) : Volts.of(8));
+        motorOn = !motorOn;
     }
 }
