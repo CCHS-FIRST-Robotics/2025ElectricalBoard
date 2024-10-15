@@ -30,9 +30,12 @@ public class RobotContainer {
         //double output = pidController.calculate(currentPosition);
 
         //output = MathUtil.clamp(output, -1, 1);
-        motor.setVoltage(pidController.calculate(currentPosition/(2 * Math.PI), angle));
-    }
+        while (!pidController.atSetpoint()) {
+             motor.setVoltage(pidController.calculate(currentPosition/(2 * Math.PI), angle));
+        }
 
+        }
+       
     public void periodic() {
         if (pidController.atSetpoint()) {
             motor.set(0);
