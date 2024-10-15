@@ -1,7 +1,6 @@
 package frc.robot;
 
 import com.ctre.phoenix6.hardware.TalonFX;
-import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -32,11 +31,13 @@ public class RobotContainer {
 
         //output = MathUtil.clamp(output, -1, 1);
         motor.setPosition(pidController.calculate(currentPosition, angle));
+        System.out.println(currentPosition);
     }
 
     public void periodic() {
         if (pidController.atSetpoint()) {
             motor.set(0);
         }
+
     }
 }
