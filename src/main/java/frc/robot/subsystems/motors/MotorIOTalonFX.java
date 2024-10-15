@@ -63,7 +63,7 @@ public class MotorIOTalonFX implements MotorIO {
 
     public void iteratePosition(){
         motor.setControl(motorMotionMagicVoltage.withPosition(angle.in(Rotations)).withSlot(0));
-        System.out.println(angle.in(Rotations));
+        // System.out.println(angle.in(Rotations));
 
         angle = Radians.of(angle.in(Radians) + Math.PI / 2);
         }

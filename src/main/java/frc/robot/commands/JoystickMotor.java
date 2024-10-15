@@ -33,14 +33,15 @@ public class JoystickMotor extends Command{
             speed = 0;
         }
         else{
-            // speed *= 12;
-            // speed *= Math.signum(y);
+            speed *= 12;
+            speed *= Math.signum(y);
             angle = Math.atan(y / x);
 
         }
 
         // motors.setAllMotorVoltage(Volts.of(speed));
-        motors.setMotorPosition(0, Radians.of(angle));
+        motors.setMotorPosition(0, Radians.of(0));
+        System.out.println(angle);
     }
 
 }
