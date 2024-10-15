@@ -11,7 +11,7 @@ import static edu.wpi.first.units.Units.*;
 
 public class RobotContainer {
     private final CommandXboxController transmitter = new CommandXboxController(Constants.Controller_PORT);
-    private final TalonFX motor = new TalonFX(1);
+    private final TalonFX motor = new TalonFX(0);
     private final PIDController pidController = new PIDController(20, 0.0, 0.1);
     Measure<Angle> targetAngle = Radians.of(Math.PI / 2); //pi/2 rad = 90 deg
 
@@ -30,8 +30,8 @@ public class RobotContainer {
         double currentPosition = motor.getPosition().getValue();
         double output = pidController.calculate(currentPosition);
 
-        output = MathUtil.clamp(output, -1, 1);
-        motor.set(output);
+        //output = MathUtil.clamp(output, -1, 1);
+        motor.setPosition(pidController.calculate(output, angle));
     }
 
     public void periodic() {
