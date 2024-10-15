@@ -28,10 +28,10 @@ public class RobotContainer {
     public void moveToAngle(double angle) {
         pidController.setSetpoint(angle);
         double currentPosition = motor.getPosition().getValue();
-        double output = pidController.calculate(currentPosition);
+        //double output = pidController.calculate(currentPosition);
 
         //output = MathUtil.clamp(output, -1, 1);
-        motor.setPosition(pidController.calculate(output, angle));
+        motor.setPosition(pidController.calculate(currentPosition, angle));
     }
 
     public void periodic() {
