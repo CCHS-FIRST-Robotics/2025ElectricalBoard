@@ -55,12 +55,12 @@ public class RobotContainer {
         controller1.x().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(0)))); // zero the motor
         controller1.y().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(1)))); // iterate
         controller1.b().onTrue(new ExponentialProfile(motors, 20, 12, 10)); // ! test all signals with advantagescope
-        controller1.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
+        controller1.a().onTrue(new InstantCommand(() -> motors.toggleMotors())); // test voltage
         
         // arm controls
         controller2.x().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(0)))); // zero the motor
         controller2.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(1)))); // iterate
-        controller2.a().onTrue(new InstantCommand(() -> arm.toggleMotor()));
+        controller2.a().onTrue(new InstantCommand(() -> arm.toggleMotor())); // test voltage
 
         //-----Pneumatics-----//
         // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));

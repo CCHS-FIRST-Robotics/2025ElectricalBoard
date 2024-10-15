@@ -18,7 +18,7 @@ public class Arm extends SubsystemBase{
     @Override
     public void periodic() {
         io.updateInputs(inputs);
-        Logger.processInputs("arm", inputs);
+        Logger.processInputs("Arm", inputs);
     }
 
     public void setVoltage(Measure<Voltage> volts){
