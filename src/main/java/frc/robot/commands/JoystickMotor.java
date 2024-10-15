@@ -29,12 +29,12 @@ public class JoystickMotor extends Command{
         y = controller.getLeftY();
         speed = Math.sqrt(((x * x) + (y * y))); //Finding Magnitude
 
-        if (Math.abs(speed) < 0.06){
+        if (Math.abs(speed) < 0.1){
             speed = 0;
         }
         else{
-            speed *= 12;
-            speed *= Math.signum(y);
+            // speed *= 12;
+            // speed *= Math.signum(y);
             angle = Math.atan(y / x);
 
         }
