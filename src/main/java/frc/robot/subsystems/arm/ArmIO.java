@@ -16,6 +16,10 @@ public interface ArmIO {
     public default void setPosition(Measure<Angle> position){
     }
 
+    public default void setVoltage(Measure<Voltage> volts){
+
+    }
+
     public default void updateInputs(ArmIOInputs inputs) {
     }
 }

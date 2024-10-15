@@ -4,11 +4,14 @@ import static edu.wpi.first.units.Units.*;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import java.util.function.Supplier;
+
+import frc.robot.subsystems.arm.Arm;
 import frc.robot.subsystems.motors.GroupOfMotors;
 import frc.robot.Constants;
 
 public class ControlWithJoysticks extends Command{
     GroupOfMotors motors;
+    Arm arm;
     Supplier<Double> leftXSupplier;
     Supplier<Double> leftYSupplier;
     Supplier<Double> rightXSupplier;
@@ -16,6 +19,7 @@ public class ControlWithJoysticks extends Command{
 
     public ControlWithJoysticks(
         GroupOfMotors motors,
+        Arm arm,
         Supplier<Double> leftXSupplier,
         Supplier<Double> leftYSupplier,
         Supplier<Double> rightXSupplier,
@@ -37,9 +41,7 @@ public class ControlWithJoysticks extends Command{
         double rightY = rightYSupplier.get();
         
         motors.setMotorVoltage(0, Volts.of(applyPreferences(leftX)));
-        motors.setMotorVoltage(1, Volts.of(applyPreferences(leftY)));
-        motors.setMotorVoltage(2, Volts.of(applyPreferences(rightX)));
-        motors.setMotorVoltage(3, Volts.of(applyPreferences(rightY)));
+        arm.setVoltage(Volts.of(applyPreferences(rightX)));
     }
 
     public double applyPreferences(double input){

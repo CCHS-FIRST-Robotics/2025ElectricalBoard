@@ -21,4 +21,8 @@ public class Arm extends SubsystemBase{
     public void setPosition(Measure<Angle> position) {
         io.setPosition(position);
     }
+
+    public void setVoltage(Measure<Voltage> volts){
+        io.setVoltage(volts);
+    }
 }

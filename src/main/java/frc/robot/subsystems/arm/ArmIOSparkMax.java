@@ -55,6 +55,10 @@ public class ArmIOSparkMax implements ArmIO {
         );
         System.out.println(position.in(Rotations));
     }
+    @Override
+    public void setVoltage(Measure<Voltage> volts){
+        motor.setVoltage(volts.in(Volts));
+    }
 
     @Override
     public void updateInputs(ArmIOInputs inputs) {
