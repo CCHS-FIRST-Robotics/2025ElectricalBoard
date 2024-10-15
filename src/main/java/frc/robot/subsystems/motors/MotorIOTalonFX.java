@@ -56,7 +56,6 @@ public class MotorIOTalonFX implements MotorIO {
 
     @Override
     public void setPosition(Measure<Angle> position){
-        // ! everything in here is temp
         if(position.in(Radians) == 0){
             motor.setControl(motorMotionMagicVoltage.withPosition(position.in(Rotations)).withSlot(0));
         }else{
@@ -65,11 +64,9 @@ public class MotorIOTalonFX implements MotorIO {
     }
 
     public void iteratePosition(){
-        // ! test with adding current position
         motor.setControl(motorMotionMagicVoltage.withPosition(angle.in(Rotations)).withSlot(0));
-        // positionSignal.refresh() // ! test if this works
+        // positionSignal.refresh()
         // motor.setControl(motorMotionMagicVoltage.withPosition(positionSignal.getValue() + 0.25).withSlot(0));
-        // ! also test the position graph in advantagescope without PID
         // motor.setControl(motorMotionMagicVoltage.withPosition(angle.in(Rotations)));
         System.out.println(angle.in(Rotations));
 
