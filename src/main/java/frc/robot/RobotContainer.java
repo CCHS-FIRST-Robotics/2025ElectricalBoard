@@ -52,6 +52,8 @@ public class RobotContainer {
         // controller.b().onTrue(new ExponentialProfile(motors, 20, 12, 10));
         // controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 
+        controller.a().onTrue(new JoystickMotor(motors, controller));
+
         //-----Pneumatics-----//
         // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));
         // controller.a().onTrue(new InstantCommand(() -> pneumatics.togglePiston2()));

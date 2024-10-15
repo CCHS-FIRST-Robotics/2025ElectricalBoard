@@ -1,7 +1,9 @@
 package frc.robot.commands;
 
+import static edu.wpi.first.units.Units.*;
+
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.motors.FourMotors;
+import frc.robot.subsystems.motors.GroupOfMotors;
 
 public class LukeCode extends Command{
     //States
@@ -11,9 +13,9 @@ public class LukeCode extends Command{
     public int timer = 50; //In 20 ms increments because I'm stupid
     public double motorVoltage = 0;
     
-    public FourMotors motors; //This is what gets the motors
+    public GroupOfMotors motors; //This is what gets the motors
 
-    public LukeCode(FourMotors motors){
+    public LukeCode(GroupOfMotors motors){
         this.motors = motors;
         addRequirements(motors);
     }
@@ -61,6 +63,6 @@ public class LukeCode extends Command{
             default:
                 break;
         }
-        motors.setAllMotorVoltage(motorVoltage);
+        motors.setAllMotorVoltage(Volts.of(motorVoltage));
     }
 }

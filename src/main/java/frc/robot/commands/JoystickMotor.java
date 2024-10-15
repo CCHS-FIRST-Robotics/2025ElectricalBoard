@@ -1,19 +1,23 @@
 package frc.robot.commands;
 
+import static edu.wpi.first.units.Units.*; //REALLY IMPORTANT
+
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.subsystems.motors.FourMotors;
+import frc.robot.subsystems.motors.GroupOfMotors;
 
 public class JoystickMotor extends Command{
 
-    public FourMotors motors;
+    public GroupOfMotors motors;
     public CommandXboxController controller;
     public double x;
     public double y;
 
     public double speed;
+    public double angle;
 
-    public JoystickMotor(FourMotors motors, CommandXboxController controller){
+    public JoystickMotor(GroupOfMotors motors, CommandXboxController controller){
         this.motors = motors;
         this.controller = controller;
         addRequirements(motors);
@@ -31,9 +35,12 @@ public class JoystickMotor extends Command{
         else{
             speed *= 12;
             speed *= Math.signum(y);
+            angle = Math.atan(y / x);
+
         }
 
-        motors.setAllMotorVoltage(speed);
+        // motors.setAllMotorVoltage(Volts.of(speed));
+        motors.setMotorPosition(0, Radians.of(angle));
     }
 
 }

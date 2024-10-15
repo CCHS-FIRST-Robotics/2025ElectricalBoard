@@ -1,15 +1,21 @@
 package frc.robot.commands;
 
+import static edu.wpi.first.units.Units.Radians;
+// import static edu.wpi.first.units.Units.Volts;
+
+// import static edu.wpi.first.units.Units.*; //REALLY IMPORTANT
+
+
 import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.subsystems.motors.FourMotors;
+import frc.robot.subsystems.motors.GroupOfMotors;
 
 public class Simon extends Command{
     
     //Mechanical stuff (ew)
-    public FourMotors motors;
+    public GroupOfMotors motors;
     public CommandXboxController controller;
 
     public double x;
@@ -35,7 +41,7 @@ public class Simon extends Command{
     boolean done = false;
 
     //Other stuff idk
-    public Simon(FourMotors motors, CommandXboxController controller){
+    public Simon(GroupOfMotors motors, CommandXboxController controller){
         this.motors = motors;
         this.controller = controller;
         addRequirements(motors);
@@ -68,10 +74,10 @@ public class Simon extends Command{
                 if (input == sequence.get(sequenceIndex)) { //Checking if correct
                     if (sequence.size() != sequenceIndex + 1) { //Making sure not at end of sequence
                         sequenceIndex++;
-                        //Rotate the talonFX
+                        motors.setMotorPosition(0, Radians.of(input));
                     }
                     else { //If end of sequence
-                        //Rotate the motor I guess so player knows it's resetting
+                        motors.setMotorPosition(0, Radians.of(0));
                         sequenceIndex = 0;
                         timer = 100;
                         sequence.add(directions[(int) Math.round(Math.random() * 3)]);
@@ -85,7 +91,7 @@ public class Simon extends Command{
             }
             case SEQUENCE: {
                 if (timer <= 0) {
-                    // set talonFX to sequence.get(sequenceIndex);
+                    motors.setMotorPosition(0, Radians.of(sequence.get(sequenceIndex)));
                     if (sequence.size() == sequenceIndex + 1){
                         sequenceIndex = 0;
                         state = GameState.THINK;
