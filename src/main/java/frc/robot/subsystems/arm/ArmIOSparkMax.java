@@ -31,15 +31,15 @@ public class ArmIOSparkMax implements ArmIO {
 
         motor.setCANTimeout(500);
         motor.setPeriodicFramePeriod(
-            PeriodicFrame.kStatus5,  // returns encoder position frame
+            PeriodicFrame.kStatus5, // returns encoder position frame
             20
         );
         motor.setSmartCurrentLimit(30);
         motor.enableVoltageCompensation(12);
         motor.setIdleMode(IdleMode.kBrake);
-        encoder.setPosition(0); // ! hm
+        encoder.setPosition(0);
         encoder.setMeasurementPeriod(20);
-        encoder.setAverageDepth(2);
+        // encoder.setAverageDepth(2);
         encoder.setPositionConversionFactor(1);
         motor.setCANTimeout(0);
 
@@ -77,7 +77,7 @@ public class ArmIOSparkMax implements ArmIO {
         //     0
         // );
 
-        System.out.println(angle.in(Rotations));
+        System.out.println("arm angle: " + angle.in(Rotations));
         angle = Radians.of(angle.in(Radians) + Math.PI / 2);
     }
 
