@@ -34,7 +34,7 @@ public class RobotContainer {
              motor.setVoltage(pidController.calculate(currentPosition/(2 * Math.PI), angle));
         }
 
-        }
+    }
        
     public void periodic() {
         if (pidController.atSetpoint()) {
