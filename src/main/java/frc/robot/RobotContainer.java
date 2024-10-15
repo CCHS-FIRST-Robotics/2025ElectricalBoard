@@ -6,12 +6,14 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.units.*;
+import static edu.wpi.first.units.Units.*;
 
 public class RobotContainer {
     private final CommandXboxController transmitter = new CommandXboxController(Constants.Controller_PORT);
     private final TalonFX motor = new TalonFX(1);
-    private final PIDController pidController = new PIDController(0.5, 0.0, 0.1);
-    private final double targetAngle = Math.PI / 2; //pi/2 rad = 90 deg
+    private final PIDController pidController = new PIDController(1, 0.0, 0.1);
+    Measure<Angle> targetAngle = Radians.of(Math.PI / 2); //pi/2 rad = 90 deg
 
     public RobotContainer() {
         pidController.setTolerance(5, 10);
@@ -20,7 +22,7 @@ public class RobotContainer {
 
     private void configureBindings() {
         Trigger buttonB = transmitter.b();
-        buttonB.onTrue(new InstantCommand(() -> moveToAngle(targetAngle)));
+        buttonB.onTrue(new InstantCommand(() -> moveToAngle(targetAngle.in(Radians))));
     }
 
     public void moveToAngle(double angle) {
