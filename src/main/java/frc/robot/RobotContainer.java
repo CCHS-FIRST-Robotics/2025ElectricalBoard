@@ -21,7 +21,7 @@ public class RobotContainer {
 
     private void configureBindings() {
         Trigger buttonB = transmitter.b();
-        buttonB.onTrue(new InstantCommand(() -> moveToAngle(targetAngle.in(Radians))));
+        buttonB.onTrue(new InstantCommand(() -> moveToAngle(targetAngle.in(Rotations))));
     }
 
     public void moveToAngle(double angle) {
@@ -30,14 +30,12 @@ public class RobotContainer {
         //double output = pidController.calculate(currentPosition);
 
         //output = MathUtil.clamp(output, -1, 1);
-        motor.setPosition(pidController.calculate(currentPosition, angle));
-        System.out.println(currentPosition);
+        motor.setVoltage(pidController.calculate(currentPosition/(2 * Math.PI), angle));
     }
 
     public void periodic() {
         if (pidController.atSetpoint()) {
             motor.set(0);
         }
-
     }
 }
