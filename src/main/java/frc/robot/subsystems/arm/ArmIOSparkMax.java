@@ -47,7 +47,6 @@ public class ArmIOSparkMax implements ArmIO {
     }
 
     @Override
-    //! TEMP
     public void setVoltage(Measure<Voltage> volts){
         motor.setVoltage(volts.in(Volts));
     }
@@ -66,14 +65,13 @@ public class ArmIOSparkMax implements ArmIO {
     }
 
     public void iteratePosition(){
-        // ! test with adding current position
         PIDF.setReference(
             angle.in(Rotations),
             CANSparkMax.ControlType.kPosition,
             0
         );
         // PIDF.setReference(
-        //     encoder.getPosition() + angle.in(Rotations),
+        //     encoder.getPosition() + 0.25,
         //     CANSparkMax.ControlType.kPosition,
         //     0
         // );
