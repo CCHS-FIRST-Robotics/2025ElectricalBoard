@@ -14,6 +14,7 @@ public class RobotContainer {
     private final PIDController pidController;
     Measure<Angle> targetAngle1 = Radians.of(Math.PI / 2); //pi/2 rad = 90 deg
     Measure<Angle> targetAngle2 = Radians.of(Math.PI); //pi rad = 180 deg
+    Measure<Angle> targetAngle3 = Radians.of(Math.PI / 4); // 45 deg
 
 
     public RobotContainer() {
@@ -29,6 +30,9 @@ public class RobotContainer {
 
         Trigger buttonX = transmitter.x();
         buttonX.onTrue(new MoveToAngle(motor, pidController, targetAngle2));
+
+        Trigger buttonY = transmitter.y();
+        buttonY.onTrue(new MoveToAngle(motor, pidController, targetAngle3));
 
     }
 }
