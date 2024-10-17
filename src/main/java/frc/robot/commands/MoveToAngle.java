@@ -27,7 +27,7 @@ public class MoveToAngle extends Command{
 
     @Override
     public boolean isFinished() {
+        System.out.println("Thing Finished");
         return pidController.atSetpoint();
     }
-    
 }
