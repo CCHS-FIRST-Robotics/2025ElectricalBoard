@@ -58,7 +58,7 @@ public class RobotContainer {
         controller1.a().onTrue(new InstantCommand(() -> motors.toggleMotors())); // test voltage
         
         // arm controls
-        controller2.x().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(0))));
+        controller2.x().onTrue(new RunCommand(() -> arm.setPosition(Radians.of(0)), arm));
         controller2.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(1))));
         controller2.a().onTrue(new InstantCommand(() -> arm.toggleMotor()));
 

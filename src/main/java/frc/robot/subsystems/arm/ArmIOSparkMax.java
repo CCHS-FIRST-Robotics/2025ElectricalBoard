@@ -15,16 +15,16 @@ public class ArmIOSparkMax implements ArmIO {
     private final AbsoluteEncoder encoder;
     private final SparkPIDController PIDF;
 
-    PIDController PID = new PIDController(10, 0, 0);
+    PIDController PID_temp = new PIDController(10, 0, 0);
 
     Measure<Angle> angle = Radians.of(0);
 
-    public ArmIOSparkMax(int id){ // ! includes notes that might help with bugfixing
+    public ArmIOSparkMax(int id){
         motor = new CANSparkMax(id, MotorType.kBrushed);
-        encoder = motor.getAbsoluteEncoder(SparkAbsoluteEncoder.Type.kDutyCycle); // ! this line might have to be after setting can timeout
+        encoder = motor.getAbsoluteEncoder(SparkAbsoluteEncoder.Type.kDutyCycle);
         PIDF = motor.getPIDController();
 
-        PIDF.setP(10, 0); // ! could be too low
+        PIDF.setP(10, 0);
         PIDF.setD(0, 0);
         PIDF.setI(0, 0);
         PIDF.setFF(0, 0);
@@ -55,33 +55,25 @@ public class ArmIOSparkMax implements ArmIO {
 
     @Override
     public void setPosition(Measure<Angle> position){
-        if(position.in(Radians) == 0){
-            motor.setVoltage(PID.calculate(encoder.getPosition(), 0));
-            // PIDF.setReference(
-            //     position.in(Rotations),
-            //     CANSparkMax.ControlType.kPosition,
-            //     0
-            // );
-        }else{
-            iteratePosition();
-        }
+        motor.setVoltage(PID_temp.calculate(encoder.getPosition(), 0));
+        
+        // if(position.in(Radians) == 0){
+        //     PIDF.setReference(
+        //         position.in(Rotations),
+        //         CANSparkMax.ControlType.kPosition,
+        //         0
+        //     );
+        // }else{
+        //     iteratePosition();
+        // }
     }
 
     public void iteratePosition(){
         PIDF.setReference(
-            angle.in(Rotations),
+            encoder.getPosition() + 0.25,
             CANSparkMax.ControlType.kPosition,
             0
         );
-        
-        // PIDF.setReference(
-        //     encoder.getPosition() + 0.25,
-        //     CANSparkMax.ControlType.kPosition,
-        //     0
-        // );
-
-        System.out.println("arm angle: " + angle.in(Rotations));
-        angle = Radians.of(angle.in(Radians) + Math.PI / 2);
     }
 
     @Override
