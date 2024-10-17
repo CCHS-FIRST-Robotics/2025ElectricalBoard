@@ -22,12 +22,12 @@ public class MoveToAngle extends Command{
     public void execute() {
         pidController.setSetpoint(angle.in(Rotations));
         double currentPosition = motor.getPosition().getValue();
-        motor.setVoltage(pidController.calculate(currentPosition/(2 * Math.PI), angle.in(Rotations)));
+        motor.setVoltage(pidController.calculate(currentPosition, angle.in(Rotations)));
     }
 
     @Override
     public boolean isFinished() {
-        System.out.println("Thing Finished");
+        // System.out.println("Thing Finished");
         return pidController.atSetpoint();
     }
 }
