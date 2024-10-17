@@ -24,23 +24,31 @@ public class JoystickMotor extends Command{
     }
 
     @Override
+    public void initialize(){
+        motors.setMotorPosition(0, Radians.of(0));
+    }
+
+    @Override
     public void execute() {
         x = controller.getLeftX();
         y = controller.getLeftY();
         speed = Math.sqrt(((x * x) + (y * y))); //Finding Magnitude
 
-        if (Math.abs(speed) < 0.1){
+        if (Math.abs(speed) < 0.3 ){
             speed = 0;
         }
         else{
             speed *= 12;
             speed *= Math.signum(y);
-            angle = Math.atan(y / x);
+            angle = Math.atan2(y,x);
 
         }
 
         // motors.setAllMotorVoltage(Volts.of(speed));
-        motors.setMotorPosition(0, Radians.of(0));
+        // motors.setMotorPosition(0, Radians.of(angle + Math.PI));
+        motors.setMotorPosition(0, Radians.of(angle));
+
+
         System.out.println(angle);
     }
 

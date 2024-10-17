@@ -23,7 +23,7 @@ public class RobotContainer {
     Trigger irSensor = new Trigger(new DigitalInput(Constants.IR_SENSOR_PORT)::get);
 
     GroupOfMotors motors = new GroupOfMotors();
-    Arm arm = new Arm(new ArmIOSparkMax(Constants.SPARKMAX_ID));
+    // Arm arm = new Arm(new ArmIOSparkMax(Constants.SPARKMAX_ID));
     Pneumatics pneumatics = new Pneumatics(Constants.PISTON_ID_1, Constants.PISTON_ID_2);
 
     public RobotContainer() {
