@@ -2,7 +2,6 @@ package frc.robot;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.units.*;
@@ -16,7 +15,7 @@ public class RobotContainer {
     Measure<Angle> targetAngle = Radians.of(Math.PI / 2); //pi/2 rad = 90 deg
 
     public RobotContainer() {
-        pidController = new PIDController(15, 0, 0.1);
+        pidController = new PIDController(15, 0, 0);
         pidController.setTolerance(5, 10);
         motor = new TalonFX(0);
 
@@ -25,6 +24,6 @@ public class RobotContainer {
 
     private void configureBindings() {
         Trigger buttonB = transmitter.b();
-        buttonB.onTrue(new MoveToAngle(targetAngle, pidController, motor));
+        buttonB.onTrue(new MoveToAngle(motor, pidController, targetAngle));
     }
 }
