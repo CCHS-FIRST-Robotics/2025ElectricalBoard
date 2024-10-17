@@ -16,12 +16,12 @@ public class RobotContainer {
 
     public RobotContainer() {
         pidController = new PIDController(15, 0, 0);
-        pidController.setTolerance(5, 10);
+        pidController.setTolerance(5, 10); //hmm
         motor = new TalonFX(0);
 
         configureBindings();
     }
-
+    
     private void configureBindings() {
         Trigger buttonB = transmitter.b();
         buttonB.onTrue(new MoveToAngle(motor, pidController, targetAngle));
