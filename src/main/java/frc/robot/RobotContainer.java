@@ -28,7 +28,7 @@ public class RobotContainer {
 
     public RobotContainer() {
         motors = new GroupOfMotors();
-        arm = new Arm(new ArmIOSparkMax(Constants.SPARKMAX_ID));
+        arm = new Arm(new ArmIOTalonSRX(Constants.TALONSRX_ID_1));
         // pneumatics = new Pneumatics(Constants.PISTON_ID_1, Constants.PISTON_ID_2);
 
         motors.addMotor(new Motor(new MotorIOTalonFX(Constants.TALONFX_ID), 0)); // kraken
@@ -58,7 +58,7 @@ public class RobotContainer {
         controller1.a().onTrue(new InstantCommand(() -> motors.toggleMotors())); // test voltage
         
         // arm controls
-        controller2.x().onTrue(new RunCommand(() -> arm.setPosition(Radians.of(0)), arm));
+        controller2.x().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(0))));
         controller2.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(1))));
         controller2.a().onTrue(new InstantCommand(() -> arm.toggleMotor()));
 

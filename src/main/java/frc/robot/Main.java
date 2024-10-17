@@ -11,9 +11,8 @@ import edu.wpi.first.wpilibj.RobotBase;
  * 
  * big items for tomorrow: 
  * 
- * test arm: 
- *  - zeroing and regular iteration
- *  - iteration adding on the current position
+
+ * 
  * 
  * 
  * arm motion profiling

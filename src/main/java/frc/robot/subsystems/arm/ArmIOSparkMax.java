@@ -17,8 +17,6 @@ public class ArmIOSparkMax implements ArmIO {
 
     PIDController PID_temp = new PIDController(10, 0, 0);
 
-    Measure<Angle> angle = Radians.of(0);
-
     public ArmIOSparkMax(int id){
         motor = new CANSparkMax(id, MotorType.kBrushed);
         encoder = motor.getAbsoluteEncoder(SparkAbsoluteEncoder.Type.kDutyCycle);
@@ -28,9 +26,9 @@ public class ArmIOSparkMax implements ArmIO {
         PIDF.setD(0, 0);
         PIDF.setI(0, 0);
         PIDF.setFF(0, 0);
-        PIDF.setPositionPIDWrappingEnabled(true);
-        PIDF.setPositionPIDWrappingMinInput(0);
-        PIDF.setPositionPIDWrappingMaxInput(1);
+        // PIDF.setPositionPIDWrappingEnabled(true);
+        // PIDF.setPositionPIDWrappingMinInput(0);
+        // PIDF.setPositionPIDWrappingMaxInput(1);
         PIDF.setFeedbackDevice(encoder);
 
         motor.setCANTimeout(500);
@@ -42,7 +40,6 @@ public class ArmIOSparkMax implements ArmIO {
         motor.enableVoltageCompensation(12);
         motor.setIdleMode(IdleMode.kBrake);
         encoder.setAverageDepth(2);
-        encoder.setPositionConversionFactor(1);
         motor.setCANTimeout(0);
 
         System.out.println(motor.burnFlash() == REVLibError.kOk);
