@@ -9,15 +9,13 @@ import edu.wpi.first.wpilibj.RobotBase;
 /**
  * to do: 
  * 
- * big items for tomorrow: 
- * 
-
- * 
- * 
+ * test positionwithjoysticks
  * 
  * arm motion profiling
  * tune PIDs
  * test pneumatics
+ * 
+ * eventually put all of the arm code into motors
  */
 
 public final class Main {

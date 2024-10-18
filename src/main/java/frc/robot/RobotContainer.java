@@ -42,30 +42,38 @@ public class RobotContainer {
     private void configureBindings() {
         //-----Motors-----//
         // motors.setDefaultCommand(
-        //     new ControlWithJoysticks(
+        //     new VoltageWithJoysticks(
         //         motors,
-        //         () -> controller.getLeftX(),
-        //         () -> controller.getLeftY(),
-        //         () -> controller.getRightX(),
-        //         () -> controller.getRightY()
+        //         () -> controller1.getLeftX(),
+        //         () -> controller1.getLeftY(),
+        //         () -> controller1.getRightX(),
+        //         () -> controller1.getRightY()
         //     )
         // );
+
+        arm.setDefaultCommand(
+            new PositionWithJoysticks(
+                arm,
+                () -> controller2.getLeftX()
+            )
+        );
 
         // talonFX controls
         controller1.x().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(0))));
         controller1.y().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(1))));
-        controller1.b().onTrue(new ExponentialProfile(motors, 20, 12, 10));
-        controller1.a().onTrue(new InstantCommand(() -> motors.toggleMotors())); // test voltage
+        controller1.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
         
         // arm controls
         controller2.x().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(0))));
         controller2.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(1))));
         controller2.a().onTrue(new InstantCommand(() -> arm.toggleMotor()));
 
+
         //-----Pneumatics-----//
         // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));
         // controller.a().onTrue(new InstantCommand(() -> pneumatics.togglePiston2()));
 
+        
         //-----DIO-----//
         nintendo1.onTrue(new InstantCommand(() -> System.out.println("switch 1")));
         nintendo2.onTrue(new InstantCommand(() -> System.out.println("switch 2")));

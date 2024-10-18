@@ -7,14 +7,14 @@ import java.util.function.Supplier;
 import frc.robot.subsystems.motors.GroupOfMotors;
 import frc.robot.Constants;
 
-public class ControlWithJoysticks extends Command{
+public class VoltageWithJoysticks extends Command{
     GroupOfMotors motors;
     Supplier<Double> leftXSupplier;
     Supplier<Double> leftYSupplier;
     Supplier<Double> rightXSupplier;
     Supplier<Double> rightYSupplier;
 
-    public ControlWithJoysticks(
+    public VoltageWithJoysticks(
         GroupOfMotors motors,
         Supplier<Double> leftXSupplier,
         Supplier<Double> leftYSupplier,
