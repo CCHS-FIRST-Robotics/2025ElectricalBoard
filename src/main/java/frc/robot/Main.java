@@ -15,7 +15,8 @@ import edu.wpi.first.wpilibj.RobotBase;
  * tune PIDs
  * test pneumatics
  * 
- * eventually put all of the arm code into motors
+ * 
+ * counts per rev // !
  */
 
 public final class Main {

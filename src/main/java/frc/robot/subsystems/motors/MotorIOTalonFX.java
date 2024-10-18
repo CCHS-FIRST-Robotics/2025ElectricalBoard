@@ -24,16 +24,10 @@ public class MotorIOTalonFX implements MotorIO {
     public MotorIOTalonFX(int id){
         motor = new TalonFX(id);
 
-        voltageSignal = motor.getMotorVoltage();
-        currentSignal = motor.getStatorCurrent();
-        positionSignal = motor.getPosition();
-        velocitySignal = motor.getVelocity();
-        temperatureSignal = motor.getDeviceTemp();
-
         PIDF.kP = 20;
         PIDF.kD = 0;
         PIDF.kI = 0;
-        PIDF.kS = 0; // makes it spike down
+        PIDF.kS = 0;
         PIDF.kV = 0;
         PIDF.kA = 0;
 
@@ -42,6 +36,12 @@ public class MotorIOTalonFX implements MotorIO {
         motionMagicConfig.MotionMagicJerk = 1;
 
         motor.getConfigurator().apply(motorConfig);
+
+        voltageSignal = motor.getMotorVoltage();
+        currentSignal = motor.getStatorCurrent();
+        positionSignal = motor.getPosition();
+        velocitySignal = motor.getVelocity();
+        temperatureSignal = motor.getDeviceTemp();
     }
 
     @Override
@@ -51,16 +51,7 @@ public class MotorIOTalonFX implements MotorIO {
 
     @Override
     public void setPosition(Measure<Angle> position){
-        if(position.in(Radians) == 0){
-            motor.setControl(motorMotionMagicVoltage.withPosition(position.in(Rotations)).withSlot(0));
-            System.out.println(position.in(Rotations));
-        }else{
-            iteratePosition();
-        }
-    }
-
-    public void iteratePosition(){
-        motor.setControl(motorMotionMagicVoltage.withPosition(positionSignal.getValue() + 0.75).withSlot(0));
+        motor.setControl(motorMotionMagicVoltage.withPosition(position.in(Rotations)).withSlot(0));
     }
 
     @Override

@@ -4,7 +4,7 @@ import static edu.wpi.first.units.Units.*;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import java.util.function.Supplier;
-import frc.robot.subsystems.motors.*;
+import frc.robot.subsystems.motors.GroupOfMotors;
 
 public class PositionWithJoysticks extends Command{
     GroupOfMotors motors;

@@ -34,8 +34,7 @@ public class MotorIOSparkMax implements MotorIO {
         motor.setIdleMode(IdleMode.kBrake);
         encoder.setAverageDepth(2);
         motor.setCANTimeout(0);
-
-        System.out.println(motor.burnFlash() == REVLibError.kOk);
+        motor.burnFlash();
     }
 
     @Override
@@ -45,20 +44,8 @@ public class MotorIOSparkMax implements MotorIO {
 
     @Override
     public void setPosition(Measure<Angle> position){        
-        if(position.in(Radians) == 0){
-            PIDF.setReference(
-                position.in(Rotations),
-                CANSparkMax.ControlType.kPosition,
-                0
-            );
-        }else{
-            iteratePosition();
-        }
-    }
-
-    public void iteratePosition(){
         PIDF.setReference(
-            encoder.getPosition() + 0.25,
+            position.in(Rotations),
             CANSparkMax.ControlType.kPosition,
             0
         );
