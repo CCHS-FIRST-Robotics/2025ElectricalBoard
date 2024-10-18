@@ -29,10 +29,6 @@ public class GroupOfMotors extends SubsystemBase{
         motors.get(index).setVoltage(volts);
     }
 
-    public void setMotorPosition(int index, Measure<Angle> position){
-        motors.get(index).setPosition(position);
-    }
-
     public void setAllMotorVoltage(Measure<Voltage> volts){
         for(Motor motor : motors){
             motor.setVoltage(volts);
@@ -42,5 +38,15 @@ public class GroupOfMotors extends SubsystemBase{
     public void toggleMotors(){
         setAllMotorVoltage(allMotorsOn ? Volts.of(0) : Volts.of(8));
         allMotorsOn = !allMotorsOn;
+    }
+
+    public void setMotorPosition(int index, Measure<Angle> position){
+        motors.get(index).setPosition(position);
+    }
+
+    public void setAllMotorPosition(Measure<Angle> position){
+        for(Motor motor : motors){
+            motor.setPosition(position);
+        }
     }
 }

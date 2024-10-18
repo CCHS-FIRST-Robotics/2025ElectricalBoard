@@ -16,10 +16,9 @@ import frc.robot.subsystems.arm.*;
 
 public class RobotContainer {
     private final CommandXboxController controller1 = new CommandXboxController(Constants.CONTROLLER_PORT_1);
-    private final CommandXboxController controller2 = new CommandXboxController(Constants.CONTROLLER_PORT_2);
+    // private final CommandXboxController controller2 = new CommandXboxController(Constants.CONTROLLER_PORT_2);
 
     private final GroupOfMotors motors;
-    private final Arm arm;
     // private final Pneumatics pneumatics;
 
     private final Trigger nintendo1 = new Trigger(new DigitalInput(Constants.SWITCH_PORT_1)::get);
@@ -28,13 +27,12 @@ public class RobotContainer {
 
     public RobotContainer() {
         motors = new GroupOfMotors();
-        arm = new Arm(new ArmIOTalonSRX(Constants.TALONSRX_ID_1));
         // pneumatics = new Pneumatics(Constants.PISTON_ID_1, Constants.PISTON_ID_2);
 
-        motors.addMotor(new Motor(new MotorIOTalonFX(Constants.TALONFX_ID), 0)); // kraken
-        // motors.addMotor(new Motor(new MotorIOSparkMax(Constants.SPARKMAX_ID), 1)); // neo
-        // motors.addMotor(new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_1), 2)); // cim1
-        // motors.addMotor(new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_2), 3)); // cim2
+        motors.addMotor(new Motor(new MotorIOTalonFX(Constants.TALONFX_ID), 0));
+        // motors.addMotor(new Motor(new MotorIOSparkMax(Constants.SPARKMAX_ID), 1));
+        motors.addMotor(new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_1), 2));
+        // motors.addMotor(new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_2), 3));
 
         configureBindings();
     }
@@ -51,29 +49,20 @@ public class RobotContainer {
         //     )
         // );
 
-        arm.setDefaultCommand(
+        motors.setDefaultCommand(
             new PositionWithJoysticks(
-                arm,
-                () -> controller2.getLeftX()
+                motors,
+                () -> controller1.getLeftX()
             )
         );
 
-        // talonFX controls
-        controller1.x().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(0))));
-        controller1.y().onTrue(new InstantCommand(() -> motors.setMotorPosition(0, Radians.of(1))));
         controller1.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
-        
-        // arm controls
-        controller2.x().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(0))));
-        controller2.y().onTrue(new InstantCommand(() -> arm.setPosition(Radians.of(1))));
-        controller2.a().onTrue(new InstantCommand(() -> arm.toggleMotor()));
-
 
         //-----Pneumatics-----//
         // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));
         // controller.a().onTrue(new InstantCommand(() -> pneumatics.togglePiston2()));
 
-        
+
         //-----DIO-----//
         nintendo1.onTrue(new InstantCommand(() -> System.out.println("switch 1")));
         nintendo2.onTrue(new InstantCommand(() -> System.out.println("switch 2")));

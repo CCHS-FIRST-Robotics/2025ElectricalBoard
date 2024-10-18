@@ -4,18 +4,18 @@ import static edu.wpi.first.units.Units.*;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import java.util.function.Supplier;
-import frc.robot.subsystems.arm.*;
+import frc.robot.subsystems.motors.*;
 
 public class PositionWithJoysticks extends Command{
-    Arm arm;
+    GroupOfMotors motors;
     Supplier<Double> leftXSupplier;
 
     public PositionWithJoysticks(
-        Arm arm,
+        GroupOfMotors motors,
         Supplier<Double> leftXSupplier
     ){
-        addRequirements(arm);
-        this.arm = arm;
+        addRequirements(motors);
+        this.motors = motors;
         this.leftXSupplier = leftXSupplier;
     }
     
@@ -23,6 +23,6 @@ public class PositionWithJoysticks extends Command{
     public void execute() {
         double leftX = leftXSupplier.get();
         
-        arm.setPosition(Rotations.of(leftX));
+        motors.setAllMotorPosition(Rotations.of(leftX));
     }
 }
