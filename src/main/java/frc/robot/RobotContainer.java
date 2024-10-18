@@ -14,8 +14,7 @@ import frc.robot.subsystems.motors.*;
 // import frc.robot.subsystems.pneumatics.*;
 
 public class RobotContainer {
-    private final CommandXboxController controller1 = new CommandXboxController(Constants.CONTROLLER_PORT_1);
-    // private final CommandXboxController controller2 = new CommandXboxController(Constants.CONTROLLER_PORT_2);
+    private final CommandXboxController controller = new CommandXboxController(Constants.CONTROLLER_PORT_1);
 
     private final GroupOfMotors motors;
     // private final Pneumatics pneumatics;
@@ -29,9 +28,7 @@ public class RobotContainer {
         // pneumatics = new Pneumatics(Constants.PISTON_ID_1, Constants.PISTON_ID_2);
 
         motors.addMotor(new Motor(new MotorIOTalonFX(Constants.TALONFX_ID), 0));
-        // motors.addMotor(new Motor(new MotorIOSparkMax(Constants.SPARKMAX_ID), 1));
-        motors.addMotor(new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_1), 2));
-        // motors.addMotor(new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_2), 3));
+        motors.addMotor(new Motor(new MotorIOTalonSRX(Constants.TALONSRX_ID_1), 1));
 
         configureBindings();
     }
@@ -41,21 +38,18 @@ public class RobotContainer {
         // motors.setDefaultCommand(
         //     new VoltageWithJoysticks(
         //         motors,
-        //         () -> controller1.getLeftX(),
-        //         () -> controller1.getLeftY(),
-        //         () -> controller1.getRightX(),
-        //         () -> controller1.getRightY()
+        //         () -> controller.getLeftX()
         //     )
         // );
 
         motors.setDefaultCommand(
             new PositionWithJoysticks(
                 motors,
-                () -> controller1.getLeftX()
+                () -> controller.getLeftX()
             )
         );
 
-        controller1.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
+        controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
 
         //-----Pneumatics-----//
         // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));

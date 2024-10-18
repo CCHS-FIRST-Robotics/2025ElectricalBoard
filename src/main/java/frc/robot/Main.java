@@ -14,9 +14,6 @@ import edu.wpi.first.wpilibj.RobotBase;
  * arm motion profiling
  * tune PIDs
  * test pneumatics
- * 
- * 
- * counts per rev // !
  */
 
 public final class Main {
