@@ -1,4 +1,6 @@
 package frc.robot.commands;
+import com.ctre.phoenix.ErrorCode;
+import com.ctre.phoenix.Logger;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -11,7 +13,7 @@ public class MoveToAngle extends Command{
     public final TalonFX motor;
     public final PIDController pidController;
     Measure<Angle> angle;
-   
+    
     public MoveToAngle(TalonFX motor, PIDController pidController, Measure<Angle> angle) {
         this.motor = motor;
         this.pidController = pidController;
@@ -23,6 +25,7 @@ public class MoveToAngle extends Command{
         pidController.setSetpoint(angle.in(Rotations));
         double currentPosition = motor.getPosition().getValue();
         motor.setVoltage(pidController.calculate(currentPosition, angle.in(Rotations)));
+        Logger.log(ErrorCode.OK, "motor position (rotations): " + currentPosition);
     }
 
     @Override
