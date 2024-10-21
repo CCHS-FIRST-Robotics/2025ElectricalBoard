@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.units.*;
 import static edu.wpi.first.units.Units.*;
+import org.littletonrobotics.junction.Logger;
+import org.littletonrobotics.junction.networktables.NT4Publisher;
+
 import frc.robot.commands.MoveToAngle;
 
 public class RobotContainer {
@@ -18,6 +21,10 @@ public class RobotContainer {
 
 
     public RobotContainer() {
+        Logger.recordMetadata("ProjectName", "EncoderMoveToAngle");
+        Logger.addDataReceiver(new NT4Publisher());
+        Logger.start();
+
         pidController = new PIDController(1, 0, 0.1);
         motor = new TalonFX(0);
 
