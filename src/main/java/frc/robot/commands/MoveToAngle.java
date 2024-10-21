@@ -1,6 +1,5 @@
 package frc.robot.commands;
-import com.ctre.phoenix.ErrorCode;
-import com.ctre.phoenix.Logger;
+import org.littletonrobotics.junction.Logger;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -25,7 +24,7 @@ public class MoveToAngle extends Command{
         pidController.setSetpoint(angle.in(Rotations));
         double currentPosition = motor.getPosition().getValue();
         motor.setVoltage(pidController.calculate(currentPosition, angle.in(Rotations)));
-        Logger.log(ErrorCode.OK, "motor position (rotations): " + currentPosition);
+        Logger.recordOutput("Motor position (rotations)", currentPosition);
     }
 
     @Override
