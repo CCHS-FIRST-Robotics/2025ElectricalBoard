@@ -35,21 +35,19 @@ public class RobotContainer {
 
     private void configureBindings() {
         //-----Motors-----//
-        // motors.setDefaultCommand(
-        //     new VoltageWithJoysticks(
-        //         motors,
-        //         () -> controller.getLeftX()
-        //     )
-        // );
-
         motors.setDefaultCommand(
-            new PositionWithJoysticks(
+            new VoltageWithJoysticks(
                 motors,
                 () -> controller.getLeftX()
             )
         );
 
-        controller.a().onTrue(new InstantCommand(() -> motors.toggleMotors()));
+        // motors.setDefaultCommand(
+        //     new PositionWithJoysticks(
+        //         motors,
+        //         () -> controller.getLeftX()
+        //     )
+        // );
 
         //-----Pneumatics-----//
         // controller.b().onTrue(new InstantCommand(() -> pneumatics.togglePiston1()));
