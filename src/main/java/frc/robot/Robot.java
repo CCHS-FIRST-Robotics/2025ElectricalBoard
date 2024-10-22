@@ -1,6 +1,8 @@
 package frc.robot;
 
 import org.littletonrobotics.junction.*;
+import org.littletonrobotics.junction.networktables.NT4Publisher;
+
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Robot extends LoggedRobot {
@@ -9,7 +11,8 @@ public class Robot extends LoggedRobot {
     @Override
     public void robotInit() {
         robotContainer = new RobotContainer();
-        Logger.recordMetadata("project", "Encoders");
+        Logger.recordMetadata("ProjectName", "EncoderMoveToAngle");
+        Logger.addDataReceiver(new NT4Publisher());
         Logger.start();
     }
 
@@ -20,7 +23,6 @@ public class Robot extends LoggedRobot {
 
     @Override
     public void teleopInit() {
-       
     }
 
     @Override

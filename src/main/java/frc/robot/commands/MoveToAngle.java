@@ -21,16 +21,17 @@ public class MoveToAngle extends Command{
 
     @Override
     public void execute() {
-        pidController.setSetpoint(angle.in(Rotations));
+        // pidController.setSetpoint(angle.in(Rotations));
         double currentPosition = motor.getPosition().getValue();
-        motor.setVoltage(pidController.calculate(currentPosition, angle.in(Rotations)));
+        double pidvalue = pidController.calculate(currentPosition, angle.in(Rotations));
+        motor.setVoltage(pidvalue);
         Logger.recordOutput("Motor position (rotations)", currentPosition);
+        Logger.recordOutput("PID Val", pidvalue);
     }
 
-    @Override
-    public boolean isFinished() {
-        // System.out.println("Thing Finished");
-        return pidController.atSetpoint();
-    }
-
+    // @Override
+    // public boolean isFinished() {
+    //     System.out.println(Math.abs(motor.getPosition().getValue() - angle.in(Rotations))<0.1);
+    //     return Math.abs(motor.getPosition().getValue() - angle.in(Rotations))<0.1;
+    // }
 }
