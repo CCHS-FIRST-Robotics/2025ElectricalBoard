@@ -13,15 +13,20 @@ public class MotorIOSparkMax implements MotorIO {
     private final AbsoluteEncoder encoder;
     private final SparkPIDController PIDF;
 
+    private final double kP = 10;
+    private final double kI = 0;
+    private final double kD = 0;
+    private final double kF = 0;
+
     public MotorIOSparkMax(int id){
         motor = new CANSparkMax(id, MotorType.kBrushed);
         encoder = motor.getAbsoluteEncoder(SparkAbsoluteEncoder.Type.kDutyCycle);
         PIDF = motor.getPIDController();
 
-        PIDF.setP(10, 0);
-        PIDF.setD(0, 0);
-        PIDF.setI(0, 0);
-        PIDF.setFF(0, 0);
+        PIDF.setP(kP, 0);
+        PIDF.setI(kD, 0);
+        PIDF.setD(kI, 0);
+        PIDF.setFF(kF, 0);
         PIDF.setFeedbackDevice(encoder);
 
         motor.setCANTimeout(500);

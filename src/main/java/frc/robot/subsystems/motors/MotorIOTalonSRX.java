@@ -9,16 +9,21 @@ import edu.wpi.first.units.*;
 
 public class MotorIOTalonSRX implements MotorIO {
     private final TalonSRX motor;
+
+    private final double kP = 1;
+    private final double kI = 0;
+    private final double kD = 0;
+    private final double kF = 0;
     
     public MotorIOTalonSRX(int id){
         motor = new TalonSRX(id);
         motor.configFactoryDefault();
         motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 
-        motor.config_kP(0, 1, 0);
-	    motor.config_kI(0, 0, 0);
-	    motor.config_kD(0, 0, 0);
-        motor.config_kF(0, 0, 0);
+        motor.config_kP(0, kP, 0);
+	    motor.config_kI(0, kI, 0);
+	    motor.config_kD(0, kD, 0);
+        motor.config_kF(0, kF, 0);
 
         motor.setInverted(false);
         motor.setSensorPhase(true);

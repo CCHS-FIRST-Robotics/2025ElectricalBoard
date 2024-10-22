@@ -15,6 +15,13 @@ public class MotorIOTalonFX implements MotorIO {
     private final MotionMagicVoltage motorMotionMagicVoltage = new MotionMagicVoltage(0);
     private final MotionMagicConfigs motionMagicConfig = motorConfig.MotionMagic;
 
+    private final double kP = 20;
+    private final double kI = 0;
+    private final double kD = 0;
+    private final double kS = 0;
+    private final double kV = 0;
+    private final double kA = 0;
+
     private StatusSignal<Double> voltageSignal;
     private StatusSignal<Double> currentSignal;
     private StatusSignal<Double> positionSignal;
@@ -24,12 +31,12 @@ public class MotorIOTalonFX implements MotorIO {
     public MotorIOTalonFX(int id){
         motor = new TalonFX(id);
 
-        PIDF.kP = 20;
-        PIDF.kD = 0;
-        PIDF.kI = 0;
-        PIDF.kS = 0;
-        PIDF.kV = 0;
-        PIDF.kA = 0;
+        PIDF.kP = kP;
+        PIDF.kI = kI;
+        PIDF.kD = kD;
+        PIDF.kS = kS;
+        PIDF.kV = kV;
+        PIDF.kA = kA;
 
         motionMagicConfig.MotionMagicCruiseVelocity = 100; // motor max rps
         motionMagicConfig.MotionMagicAcceleration = 1;
