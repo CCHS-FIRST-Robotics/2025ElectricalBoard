@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.RobotBase;
 
 /**
  * to do: 
- *  * 
+ * 
+ * kG with arm
  * arm motion profiling
  * tune PIDs
  * test pneumatics
