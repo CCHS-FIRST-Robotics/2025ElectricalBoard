@@ -14,7 +14,7 @@ public class RobotContainer {
     private final CommandXboxController transmitter = new CommandXboxController(Constants.Controller_PORT);
     private final TalonFX motor;
     private final PIDController pidController;
-    private final SimpleMotorFeedforward feedForward;
+    //private final SimpleMotorFeedforward feedForward;
     Measure<Angle> targetAngle1 = Radians.of(0); //pi/2 rad = 90 deg
     Measure<Angle> targetAngle2 = Radians.of(Math.PI / 2); //pi rad = 180 deg
     Measure<Angle> targetAngle3 = Radians.of(Math.PI / 4); // 45 deg
@@ -23,7 +23,7 @@ public class RobotContainer {
     public RobotContainer() {
         pidController = new PIDController(3, 0, 0);
         motor = new TalonFX(0);
-        feedForward = new SimpleMotorFeedforward(1, 2);
+        //feedForward = new SimpleMotorFeedforward(1, 2);
 
         configureBindings();
     }
