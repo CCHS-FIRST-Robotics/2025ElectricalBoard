@@ -1,5 +1,6 @@
 package frc.robot.subsystems.vision;
-
+// class represents an April tag
+//
 public class Tag {
     long m_ID;
     double m_distance;
